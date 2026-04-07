@@ -16,7 +16,7 @@ ui <-
                                 fg = dde_blue_dark),
                
                # -------------------------------------------------------------------------
-               # 1) Shared assets
+               # 1) Load the custom CSS file from the www folder
                # -------------------------------------------------------------------------
                tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
                
@@ -47,7 +47,7 @@ ui <-
                                  hr(class = "tight-hr"),
                                  
                                  sliderInput(inputId = "year_range",
-                                             label = "School year range",
+                                             label = LABELS$year,
                                              min = min(YEAR_RANGE),
                                              max = max(YEAR_RANGE),
                                              value = DEFAULTS$year_range,
@@ -56,26 +56,26 @@ ui <-
                                  
                                  # 2c) Filters
                                  selectizeInput(inputId = "scope_1",
-                                                label = "District",
+                                                label = LABELS$scope_1,
                                                 choices = SCOPE_1_CHOICES,
                                                 selected = DEFAULTS$scope_1,
                                                 multiple = F),
                                  
                                  selectizeInput(inputId = "scope_2",
-                                                label = "School",
+                                                label = LABELS$scope_2,
                                                 choices = SCOPE_2_CHOICES,
                                                 selected = DEFAULTS$scope_2,
                                                 multiple = F),
                                  
                                  selectizeInput(inputId = "option_1",
-                                                label = "Gender",
+                                                label = LABELS$option_1,
                                                 choices = OPTION_1_CHOICES,
                                                 selected = DEFAULTS$option_1,
                                                 multiple = T,
                                                 options = list(plugins = list("remove_button"))),
                                  
                                  selectizeInput(inputId = "option_2",
-                                                label = "Race",
+                                                label = LABELS$option_2,
                                                 choices = OPTION_2_CHOICES,
                                                 selected = DEFAULTS$option_2,
                                                 multiple = T,
@@ -87,7 +87,7 @@ ui <-
                # -------------------------------------------------------------------------
                navset_card_tab(full_screen = T,
                                
-                               nav_panel("FAFSA completion trend",
+                               nav_panel(LABELS$tab_plot,
                                          
                                          card(class = "scope-note-card",
                                               card_body(textOutput("scope_note", inline = T))),
@@ -96,7 +96,7 @@ ui <-
                                               card_body(plotOutput("main_plot")))
                                          ),
                                
-                               nav_panel("Underlying data",
+                               nav_panel(LABELS$tab_data,
                                  card(class = "table-card",
                                       min_height = "760px",
                                       card_body(DTOutput("detail_table"))))

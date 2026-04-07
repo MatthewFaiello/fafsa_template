@@ -1,9 +1,9 @@
 # --------------------------- global.R -----------------------------------------
 # PURPOSE:
-# - load required packages
-# - define shared app constants, defaults, and choices
-# - load the main application data
-# - define helper functions shared across ui.R and server.R
+# - load packages used across the app
+# - load the main app data
+# - define labels, defaults, and helper functions
+# - keep app logic in one easy-to-find place
 
 
 # -----------------------------------------------------------------------------
@@ -18,10 +18,18 @@ library(ggrepel)
 
 
 # -----------------------------------------------------------------------------
-# 2) App metadata
+# 2) App title and labels
 # -----------------------------------------------------------------------------
 APP_TITLE <- "FAFSA Completion"
 
+LABELS <- 
+  list(year = "School year range",
+       scope_1 = "District",
+       scope_2 = "School",
+       option_1 = "Gender",
+       option_2 = "Race",
+       tab_plot = "FAFSA completion trend",
+       tab_data = "Underlying data")
 
 # -----------------------------------------------------------------------------
 # 3) Main data object
@@ -71,15 +79,31 @@ OPTION_2_CHOICES <-
 # 5) Defaults
 # -----------------------------------------------------------------------------
 DEFAULTS <- 
-  list(year_range = c(2026, 2026),
-       scope_1    = "Appoquinimink School District",
-       scope_2    = "Appoquinimink High School",
-       option_1   = c("Female"),
-       option_2   = c("White"))
+  list(year_range = c(max(YEAR_RANGE), max(YEAR_RANGE)),
+       scope_1 = SCOPE_1_CHOICES[[1]],
+       scope_2 = SCOPE_2_CHOICES[[1]],
+       option_1 = OPTION_1_CHOICES[[1]],
+       option_2 = OPTION_2_CHOICES[[1]])
 
 
 # -----------------------------------------------------------------------------
-# 6) Helper: filter data to selected scope
+# 6) Theme palette (special DDOE theme!)
+# -----------------------------------------------------------------------------
+dde_blue <- "#194a78"
+dde_blue_dark <- "#123758"
+dde_orange <- "#d98b00"
+dde_orange_soft <- "#fff7ea"
+dde_bg <- "#f5f7fb"
+dde_surface <- "#ffffff"
+dde_surface_soft <- "#fbfcfe"
+dde_border <- "#d8e2ec"
+dde_border_strong <- "#c7d5e2"
+dde_text <- "#1f2937"
+dde_muted <- "#5b6875"
+
+
+# -----------------------------------------------------------------------------
+# 7) Helper: filter data to selected scope
 # -----------------------------------------------------------------------------
 data_filtered <- 
   function(data = APP_DATA,
@@ -90,16 +114,17 @@ data_filtered <-
            option_2 = DEFAULTS$option_2) {
     
     data %>%
-      filter(DistrictName %in% c(scope_1, "All LEAs"),
+      filter(SchoolYear >= min(year_range),
+             SchoolYear <= max(year_range),
+             DistrictName %in% c(scope_1, "All LEAs"),
              SchoolName %in% c(scope_2, "All Schools"),
-             between(SchoolYear, min(year_range), max(year_range)),
              gender %in% option_1,
              RaceReportTitle %in% option_2)
   }
 
 
 # -----------------------------------------------------------------------------
-# 7) Helper: create plot-ready data
+# 8) Helper: create plot-ready data
 # -----------------------------------------------------------------------------
 make_fafsa_plot_data <- 
   function(data = data_filtered()) {
@@ -160,22 +185,6 @@ make_fafsa_plot_data <-
          school_name = school_name,
          district_name = district_name)
   }
-
-
-# -----------------------------------------------------------------------------
-# 8) Theme palette (special DDOE theme!)
-# -----------------------------------------------------------------------------
-dde_blue <- "#194a78"
-dde_blue_dark <- "#123758"
-dde_orange <- "#d98b00"
-dde_orange_soft <- "#fff7ea"
-dde_bg <- "#f5f7fb"
-dde_surface <- "#ffffff"
-dde_surface_soft <- "#fbfcfe"
-dde_border <- "#d8e2ec"
-dde_border_strong <- "#c7d5e2"
-dde_text <- "#1f2937"
-dde_muted <- "#5b6875"
 
 
 # -----------------------------------------------------------------------------
