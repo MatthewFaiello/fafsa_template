@@ -189,7 +189,6 @@ plot_fafsa_completion <-
     plot_dat <- plot_obj$data
     school_name <- plot_obj$school_name
     district_name <- plot_obj$district_name
-    year_label <- plot_obj$year_label
     
     ggplot(plot_dat,
            aes(x = ApplicationReceiptMonth,
