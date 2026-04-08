@@ -1,0 +1,339 @@
+/* ------------------------- styles.css -----------------------------------------
+   PURPOSE:
+   - define custom app styling
+   - control layout spacing, typography, and branding
+   - style sidebar inputs, cards, tabs, and helper text
+   - improve visual consistency and responsiveness
+-------------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------
+   1) Theme variables
+-------------------------------------------------------------------------- */
+:root {
+  --dde-blue: #194a78;
+  --dde-blue-dark: #153b60;
+  --dde-blue-muted: #5b6875;
+  --dde-border: #d8e2ec;
+  --dde-border-soft: #dde5ee;
+  --dde-surface: #ffffff;
+  --dde-bg: #f6f8fb;
+  --dde-bg-soft: #f8fafc;
+  --dde-shadow: 0 4px 14px rgba(25, 74, 120, 0.06);
+  --dde-shadow-soft: 0 2px 10px rgba(25, 74, 120, 0.045);
+  --dde-radius: 12px;
+  --dde-radius-sm: 10px;
+}
+
+
+/* --------------------------------------------------------------------------
+   2) Page layout
+-------------------------------------------------------------------------- */
+html,
+body {
+  background: var(--dde-bg);
+}
+
+.bslib-sidebar-layout {
+  background: var(--dde-bg);
+}
+
+.bslib-sidebar-layout .sidebar {
+  background: var(--dde-surface);
+  border-right: 1px solid var(--dde-border-soft);
+  box-shadow: var(--dde-shadow-soft);
+}
+
+.sidebar {
+  padding-top: 0.8rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   3) Sidebar branding and structure
+-------------------------------------------------------------------------- */
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 36px;
+  height: clamp(36px, 4.4vw, 48px);
+  overflow: hidden;
+  margin-bottom: 0.08rem;
+}
+
+.brand-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  max-width: clamp(135px, 22vw, 210px);
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.app-title {
+  margin: 0;
+  color: var(--dde-blue);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+.sidebar-intro {
+  margin-bottom: 0.65rem;
+  color: var(--dde-blue-muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.download-wrap {
+  margin-bottom: 0.05rem;
+}
+
+.download-wrap .btn {
+  width: 100%;
+}
+
+
+/* --------------------------------------------------------------------------
+   4) Sidebar inputs and controls
+-------------------------------------------------------------------------- */
+.sidebar .shiny-input-container {
+  margin-bottom: 0.55rem;
+}
+
+.sidebar .form-label,
+.sidebar .control-label {
+  margin-bottom: 0.18rem;
+  color: var(--dde-blue);
+  font-weight: 600;
+  font-size: 0.91rem;
+}
+
+.selectize-control .selectize-input,
+.form-control,
+.form-select {
+  min-height: 38px;
+  padding: 0.32rem 0.62rem;
+  border: 1px solid var(--dde-border-soft);
+  border-radius: var(--dde-radius-sm);
+  box-shadow: none;
+}
+
+.selectize-control .selectize-input.focus,
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--dde-blue);
+  box-shadow: 0 0 0 0.15rem rgba(25, 74, 120, 0.09);
+}
+
+.selectize-dropdown {
+  overflow: hidden;
+  border: 1px solid var(--dde-border-soft);
+  border-radius: var(--dde-radius-sm);
+  box-shadow: var(--dde-shadow-soft);
+}
+
+.selectize-dropdown .active {
+  background: rgba(25, 74, 120, 0.08);
+  color: var(--dde-blue-dark);
+}
+
+.selectize-control.multi .selectize-input {
+  padding: 0.18rem 0.42rem;
+}
+
+.selectize-control.multi .selectize-input > div {
+  margin: 0.1rem 0.16rem 0.06rem 0;
+  padding: 0.07rem 0.42rem;
+  border: 1px solid rgba(25, 74, 120, 0.08);
+  border-radius: 999px;
+  background: rgba(25, 74, 120, 0.08);
+  color: var(--dde-blue-dark);
+  font-size: 0.87rem;
+}
+
+.irs,
+.js-irs-0 {
+  margin-top: 0.05rem;
+}
+
+.irs--shiny .irs-line,
+.irs--shiny .irs-bar {
+  height: 7px;
+}
+
+.irs--shiny .irs-handle {
+  top: 19px;
+}
+
+.irs--shiny .irs-from,
+.irs--shiny .irs-to,
+.irs--shiny .irs-single {
+  font-size: 0.82rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   5) Tabs and cards
+-------------------------------------------------------------------------- */
+.nav-tabs {
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+  border-bottom-color: var(--dde-border);
+}
+
+.nav-tabs .nav-link {
+  padding: 0.48rem 0.82rem;
+  border-radius: 10px 10px 0 0;
+  color: #486377;
+  font-size: 0.94rem;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.nav-tabs .nav-link:hover {
+  color: var(--dde-blue);
+  background: rgba(25, 74, 120, 0.04);
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--dde-blue);
+  background: var(--dde-surface);
+  border-color: var(--dde-border) var(--dde-border) var(--dde-surface);
+  font-weight: 600;
+}
+
+.card {
+  overflow: hidden;
+  border: 1px solid var(--dde-border-soft);
+  border-radius: var(--dde-radius);
+  box-shadow: var(--dde-shadow);
+}
+
+.card + .card {
+  margin-top: 0.5rem;
+}
+
+.card-header {
+  padding: 0.68rem 0.88rem;
+  border-bottom: 1px solid var(--dde-border);
+  background: var(--dde-surface);
+  color: var(--dde-blue);
+  font-weight: 700;
+}
+
+.card-body {
+  padding: 0.78rem 0.88rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   6) Scope note, plot card, and table card
+-------------------------------------------------------------------------- */
+.scope-note-card + .plot-card {
+  margin-top: 0.28rem;
+}
+
+.scope-note-card .card-body {
+  padding: 0.34rem 0.62rem;
+  background: var(--dde-bg-soft);
+  color: var(--dde-blue-muted);
+  font-size: 1.00rem;
+  line-height: 1.25;
+}
+
+.plot-card .card-body {
+  padding: 0.38rem 0.68rem 0.68rem;
+}
+
+.table-card {
+  overflow: hidden;
+}
+
+.table-card .card-body {
+  padding: 0.42rem 0.52rem;
+  overflow-x: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   7) Plot and table sizing
+-------------------------------------------------------------------------- */
+#main_plot {
+  height: 710px !important;
+}
+
+.table-card .dataTables_wrapper {
+  font-size: 0.9rem;
+}
+
+.table-card table.dataTable {
+  width: 100% !important;
+}
+
+.table-card .dataTables_filter input,
+.table-card .dataTables_length select {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--dde-border-soft);
+  border-radius: 8px;
+  font-size: 0.88rem;
+}
+
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+  margin-top: 0.35rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   8) Buttons and dividers
+-------------------------------------------------------------------------- */
+.tight-hr {
+  margin: 0.26rem 0 0.48rem;
+  border: 0;
+  border-top: 1px solid rgba(25, 74, 120, 0.22);
+}
+
+.btn {
+  min-height: 38px;
+  border-radius: var(--dde-radius-sm);
+  font-weight: 600;
+  font-size: 0.91rem;
+}
+
+.btn-primary {
+  box-shadow: 0 3px 10px rgba(25, 74, 120, 0.11);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  box-shadow: 0 5px 14px rgba(25, 74, 120, 0.14);
+}
+
+
+/* --------------------------------------------------------------------------
+   9) Responsive adjustments
+-------------------------------------------------------------------------- */
+@media (max-width: 576px) {
+  .brand-wrap {
+    height: 38px;
+  }
+
+  .brand-logo {
+    max-width: 150px;
+  }
+}
+
+@media (max-height: 900px) {
+  #main_plot {
+    height: 620px !important;
+  }
+}
+
+@media (max-height: 760px) {
+  #main_plot {
+    height: 540px !important;
+  }
+}
