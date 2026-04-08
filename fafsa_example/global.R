@@ -14,7 +14,6 @@ library(bslib)
 library(DT)
 library(tidyverse)
 library(scales)
-library(ggrepel)
 
 
 # -----------------------------------------------------------------------------
@@ -107,9 +106,9 @@ dde_muted <- "#5b6875"
 # -----------------------------------------------------------------------------
 data_filtered <- 
   function(data = APP_DATA,
+           year_range = DEFAULTS$year_range,
            scope_1 = DEFAULTS$scope_1,
            scope_2 = DEFAULTS$scope_2,
-           year_range = DEFAULTS$year_range,
            option_1 = DEFAULTS$option_1,
            option_2 = DEFAULTS$option_2) {
     
@@ -137,7 +136,7 @@ make_fafsa_plot_data <-
     school_meta <- 
       data %>%
       filter(level == "school") %>%
-      distinct(SchoolName, DistrictCode, DistrictName) %>%
+      distinct(SchoolName, DistrictName) %>%
       slice_head(n = 1)
     
     school_name <- school_meta$SchoolName[[1]]
@@ -170,9 +169,7 @@ make_fafsa_plot_data <-
                 .groups = "drop") %>%
       left_join(seniors) %>%
       group_by(group, gender, RaceReportTitle) %>%
-      complete(ApplicationReceiptMonth = factor(month_levels,
-                                                levels = month_levels,
-                                                ordered = T),
+      complete(ApplicationReceiptMonth,
                fill = list(completed = 0)) %>%
       fill(seniors, .direction = "downup") %>%
       arrange(ApplicationReceiptMonth, .by_group = T) %>%
@@ -205,7 +202,6 @@ plot_fafsa_completion <-
                color = group,
                group = group,
                label = percent(completion_rate, accuracy = 1))) +
-      #geom_label_repel(show.legend = F, size = 3, fontface = "bold", direction = "y") +
       geom_line() +
       geom_point(size = 1.5) +
       facet_grid(RaceReportTitle ~ gender) +

@@ -30,7 +30,7 @@ ui <-
                                  title = div(class = "brand-wrap",
                                              img(src = "Website-Header.png",
                                                  class = "brand-logo",
-                                                 alt = APP_TITLE)),
+                                                 alt = "Delaware Department of Education")),
                                  
                                  hr(class = "tight-hr"),
                                  
@@ -46,6 +46,7 @@ ui <-
                                  
                                  hr(class = "tight-hr"),
                                  
+                                 # 2c) Filters
                                  sliderInput(inputId = "year_range",
                                              label = LABELS$year,
                                              min = min(YEAR_RANGE),
@@ -54,7 +55,6 @@ ui <-
                                              step = 1,
                                              sep = ""),
                                  
-                                 # 2c) Filters
                                  selectizeInput(inputId = "scope_1",
                                                 label = LABELS$scope_1,
                                                 choices = SCOPE_1_CHOICES,
