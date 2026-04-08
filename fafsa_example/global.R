@@ -279,11 +279,8 @@ make_scope_note <-
     
     years <- sort(unique(data$SchoolYear))
     year_label <- 
-      if (length(years) == 1) {
-        as.character(years)
-      } else {
-        paste0(min(years), "\u2013", max(years))
-      }
+      if (length(years) == 1) {as.character(years)
+        } else {paste0(min(years), "\u2013", max(years))}
     
     paste0("Showing ", school_meta$SchoolName[[1]],
            " compared with ", school_meta$DistrictName[[1]],
