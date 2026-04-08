@@ -2,5 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-input_data/.RDS
-prep/data/.csv
+input_data/APP_DATA.RDS
+prep/data/fafsa_completion.csv
