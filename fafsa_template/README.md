@@ -1,30 +1,33 @@
-# FAFSA Completion Rates Shiny App
+# Shiny app template for people who do not want to reinvent the wheel every time :)
 
-A Shiny application for exploring cumulative FAFSA completion rates by month at the **school**, **district**, and **state** levels. The app lets users filter by school year, district, school, gender, and race, then view both a trend chart and the underlying filtered data. The filtered table can also be downloaded as a CSV file.
+This app framework is meant to be reused, but not in a giant framework, enterprise, “please enjoy this 14-page onboarding guide” kind of way. Maybe we’ll get there someday but today is definitely not that day.
 
-## What the app does
+The goal here is to give you a practical example you can actually work from: swap in your own data, update a few labels, filters, and helper functions, and keep moving.
 
-This app is designed to help users compare FAFSA completion progress across multiple reporting levels over time. The main view shows a completion trend chart, while a second tab exposes the supporting table used for the analysis. In the current app structure, users can:
+## What lives where
 
-- select a school year range
-- choose a district and school
-- filter by gender and race
-- compare the selected school with its district and the state
-- download the filtered data
+- `organize.R` builds the app-ready dataset
+- `global.R` loads shared stuff used across the app
+- `ui.R` controls what people see
+- `server.R` controls what the app does when people click things
+- `styles.css` handles the visual side of life
 
-## Project structure
+## Directory layout
+
+Here is the basic file structure for this app:
 
 ```text
-fafsa_example/
-├── fafsa_example.Rproj
+fafsa_template/
 ├── README.md
+├── fafsa_template.Rproj
 ├── global.R
-├── ui.R
 ├── server.R
+├── ui.R
 ├── input_data/
 │   └── APP_DATA.RDS
 ├── prep/
 │   ├── data/
+│   │   └── fafsa_completion.csv
 │   └── scripts/
 │       ├── organize.R
 │       └── fafsa_completion.sql
@@ -33,79 +36,141 @@ fafsa_example/
     └── Website-Header.png
 ```
 
-## File guide
+### What goes where
 
-### `global.R`
-Loads packages, defines shared app constants and defaults, loads the main application data from `input_data/APP_DATA.rds`, and stores helper functions used by both `ui.R` and `server.R`.
+- `README.md` explains how to use the template
+- `fafsa_template.Rproj` is the RStudio project file
+- `global.R`, `ui.R`, and `server.R` are the main app files
+- `input_data/` holds the app-ready data file the app actually reads
+- `prep/data/` holds the raw input data
+- `prep/scripts/` holds the prep scripts used to build the app-ready data
+- `www/` holds static files like CSS and images used by the app
 
-### `ui.R`
-Defines the user interface, including the sidebar filters, download button, trend tab, and underlying-data tab. It also links the app stylesheet in `www/styles.css`.
+### How the data flows
 
-### `server.R`
-Handles the reactive logic for updating available filter choices, filtering the data, rendering the plot, rendering the scope note, rendering the detail table, and downloading the filtered data.
+The basic flow is:
 
-### `www/`
-Stores static assets used by the app, including the custom stylesheet and the header image.
+`prep/data/` → `prep/scripts/organize.R` → `input_data/APP_DATA.RDS` → app
 
-### `input_data/`
-Stores the main input file used by the app.
+So if you are updating the underlying data, that usually starts in `prep/`, not in the app files themselves.
 
-### `prep/`
-Contains supporting preparation assets, including a `data/` folder and scripts used to organize or query source data.
+One small but important note:
+- files in `www/` need to stay in `www/` if you want the app to actually find them
+- the app-ready data file needs to stay where `global.R` expects it, unless you update that path there too
 
-## App layout
+## Start here if you're making this your own
 
-The app uses a sidebar-plus-main-panel layout:
+### 1) `organize.R`
+This is usually the first file to change.
 
-- **Sidebar**: year range, district, school, gender, race, and download control
-- **FAFSA completion trend** tab: main plot plus a short scope note describing the current selection
-- **Underlying data** tab: filterable detail table
+Come here to:
+- point to your raw file
+- update prep steps
+- change project-specific filtering or recodes
 
-## Data assumptions
+Main thing to keep the same:
+- the final saved object should still be called `APP_DATA`
 
-The current app logic assumes the source data contains values needed to support:
+### 2) `global.R`
+This is the app’s shared setup file.
 
-- school, district, and state comparison levels
-- school year filtering
-- gender and race subgroup filtering
-- monthly FAFSA completion counts
-- a seniors denominator for completion-rate calculation
+Change this if you need to:
+- rename the app
+- change labels
+- update defaults
+- swap helper text
+- update helper functions for your own columns or categories
 
-## Running the app
+### 3) `ui.R`
+This is the layout.
 
-Open the project in RStudio and run the app from the project root so the relative paths to `input_data/` and `www/` resolve correctly.
+Change this if you want to:
+- update the sidebar text
+- change branding
+- rename tabs
+- move outputs around
+- add or remove controls
 
-Typical options:
+One small but important thing:
+- input and output IDs in `ui.R` need to match what shows up in `server.R`
 
-```r
-shiny::runApp()
-```
+### 4) `server.R`
+This is the reactive wiring.
 
-or, if you are already in the project directory:
+Come here when you need to:
+- update how filters depend on each other
+- change what gets filtered
+- connect outputs
+- debug anything that suddenly forgot how to react
 
-```r
-source("global.R")
-source("ui.R")
-source("server.R")
-shinyApp(ui, server)
-```
+### 5) `styles.css`
+This is where the app gets to look like it has its life together.
 
-## Packages used
+Use this file to:
+- change colors
+- tweak spacing
+- resize the logo
+- adjust plot/table sizing
+- honestly, ask an LLM for help in this file
 
-The current project loads:
+## How to use this template without creating extra chaos
 
-- `shiny`
-- `bslib`
-- `DT`
-- `tidyverse`
-- `scales`
-- `ggrepel`
+Anything marked with:
 
-## Notes
+`# >>> EDIT HERE >>>`
 
-This repository appears to include both the app itself and supporting preparation scripts. A good workflow is:
+is meant to be the plug-and-play area.
 
-1. prepare or refresh the source data in `prep/`
-2. save the app-ready data object to `input_data/APP_DATA.rds`
-3. run the Shiny app from the project root
+And that doesn't mean you should never touch anything else. It just means those are the places I would check first before messing with anything more structural.
 
+## Several things to double-check when reusing this
+
+### Data and file issues
+- If the app opens and immediately complains, make sure `APP_DATA.rds` got written where `global.R` expects it
+- If your column names change, check both `organize.R` and `global.R`
+- If a helper function stops working, check whether it still matches the structure of your current data
+- If a file path works for you and for literally no one else, it is probably too local and needs to be cleaned up
+- If your app works on one machine but not another, check package versions and file paths before doing anything dramatic
+
+### UI and naming issues
+- If you rename an input in `ui.R`, update it in `server.R`
+- If you rename an output in `server.R`, update it in `ui.R`
+- If you change object names in `global.R`, make sure the same names are still being used in `ui.R` and `server.R`
+- If the app starts throwing `object not found`, there is a good chance something got renamed in one file but not the others
+
+### Reactive and filtering issues
+- If the app runs but the dropdowns get weird, check the reactive logic in `server.R`
+- If one filter is supposed to depend on another, make sure the `observeEvent()` or reactive update is pointing to the right input
+- If a dropdown is blank, check whether the filtered data is actually returning any rows
+- If something reactive is firing when it should not, look at your `req()` statements and reactive dependencies
+- If something is not updating when it should, there is a decent chance the reactive dependency is missing
+- If a plot or table is blank, check the filtered dataset first before assuming the plot/table code is broken
+
+### Output and download issues
+- If downloads stop working, check both the object being written and the `filename` / `content` functions in `downloadHandler()`
+- If a table looks wrong, check the data going into it before blaming `DT`
+- If a plot looks wrong, check the data going into it before blaming `ggplot`
+
+### Styling and layout issues
+- If the app works but looks off, that is probably a `styles.css` problem
+- If styling changes are not showing up, make sure the CSS file is in the right place (`www/`) and that the app is actually loading it
+- If spacing or sizing gets weird, check `styles.css` before trying to fix layout problems in the `ui.R`
+
+### When all else fails
+- Test the app in this order: data load, helper functions, filtered data, outputs, then styling
+- If you are truly stuck, strip it back to the smallest broken piece and test that first
+- If the “small fix” turns into two hours of nonsense, that is normal and not a personal failure
+
+## The whole idea
+
+This template is not trying to fit every dataset known to humankind. It is not even trying to fit every DDOE dataset.
+
+It is just trying to make a decent Shiny app structure easier to work with and easier to pick up.
+
+The main things it should help with are:
+- where the data comes from
+- what to edit first
+- how the UI connects to the server
+- where to swap in your own project-specific logic
+
+Teams me if the “self-guided” part stops being very self-guided...

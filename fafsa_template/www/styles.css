@@ -1,15 +1,22 @@
-/* ------------------------- styles.css -----------------------------------------
-   PURPOSE:
-   - define custom app styling
-   - control layout spacing, typography, and branding
-   - style sidebar inputs, cards, tabs, and helper text
-   - improve visual consistency and responsiveness
--------------------------------------------------------------------------------- */
+/* ==== TEMPLATE OVERVIEW ======================================================
+   This file handles the visual side of the app.
+
+   This is where to change:
+   - colors
+   - spacing
+   - logo sizing
+   - card styling
+   - plot and table sizing
+
+   Basically: if the app works but looks a little off, give this to an LLM and 
+   say "make this look nicer."
+============================================================================= */
 
 
-/* --------------------------------------------------------------------------
-   1) Theme variables
--------------------------------------------------------------------------- */
+/* ==== THEME VARIABLES (EDIT HERE) ========================================== */
+/* >>> EDIT HERE >>>
+   This is the fastest place to change the app's overall look.
+*/
 :root {
   --dde-blue: #194a78;
   --dde-blue-dark: #153b60;
@@ -24,11 +31,11 @@
   --dde-radius: 12px;
   --dde-radius-sm: 10px;
 }
+/* <<< END EDIT <<< */
 
 
-/* --------------------------------------------------------------------------
-   2) Page layout
--------------------------------------------------------------------------- */
+/* ==== PAGE LAYOUT ========================================================== */
+
 html,
 body {
   background: var(--dde-bg);
@@ -49,9 +56,8 @@ body {
 }
 
 
-/* --------------------------------------------------------------------------
-   3) Sidebar branding and structure
--------------------------------------------------------------------------- */
+/* ==== SIDEBAR BRANDING AND STRUCTURE ====================================== */
+
 .brand-wrap {
   display: flex;
   align-items: center;
@@ -97,9 +103,8 @@ body {
 }
 
 
-/* --------------------------------------------------------------------------
-   4) Sidebar inputs and controls
--------------------------------------------------------------------------- */
+/* ==== SIDEBAR INPUTS AND CONTROLS ========================================= */
+
 .sidebar .shiny-input-container {
   margin-bottom: 0.55rem;
 }
@@ -176,9 +181,8 @@ body {
 }
 
 
-/* --------------------------------------------------------------------------
-   5) Tabs and cards
--------------------------------------------------------------------------- */
+/* ==== TABS AND CARDS ======================================================= */
+
 .nav-tabs {
   gap: 0.2rem;
   margin-bottom: 0.5rem;
@@ -229,9 +233,8 @@ body {
 }
 
 
-/* --------------------------------------------------------------------------
-   6) Scope note, plot card, and table card
--------------------------------------------------------------------------- */
+/* ==== SCOPE NOTE, PLOT CARD, AND TABLE CARD =============================== */
+
 .scope-note-card + .plot-card {
   margin-top: 0.28rem;
 }
@@ -240,7 +243,7 @@ body {
   padding: 0.34rem 0.62rem;
   background: var(--dde-bg-soft);
   color: var(--dde-blue-muted);
-  font-size: 1.00rem;
+  font-size: 1rem;
   line-height: 1.25;
 }
 
@@ -258,9 +261,11 @@ body {
 }
 
 
-/* --------------------------------------------------------------------------
-   7) Plot and table sizing
--------------------------------------------------------------------------- */
+/* ==== PLOT AND TABLE SIZING (EDIT HERE) =================================== */
+/* >>> EDIT HERE >>>
+   These are the practical sizing controls.
+   If the app technically works but looks cramped or giant this is a good place to start.
+*/
 #main_plot {
   height: 710px !important;
 }
@@ -285,11 +290,11 @@ body {
 .dataTables_wrapper .dataTables_paginate {
   margin-top: 0.35rem;
 }
+/* <<< END EDIT <<< */
 
 
-/* --------------------------------------------------------------------------
-   8) Buttons and dividers
--------------------------------------------------------------------------- */
+/* ==== BUTTONS AND DIVIDERS ================================================= */
+
 .tight-hr {
   margin: 0.26rem 0 0.48rem;
   border: 0;
@@ -313,9 +318,8 @@ body {
 }
 
 
-/* --------------------------------------------------------------------------
-   9) Responsive adjustments
--------------------------------------------------------------------------- */
+/* ==== RESPONSIVE ADJUSTMENTS ============================================== */
+
 @media (max-width: 576px) {
   .brand-wrap {
     height: 38px;

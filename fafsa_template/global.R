@@ -1,14 +1,14 @@
-# --------------------------- global.R -----------------------------------------
-# PURPOSE:
-# - load packages used across the app
-# - load the main app data
-# - define labels, defaults, and helper functions
-# - keep app logic in one easy-to-find place
+# ==== TEMPLATE OVERVIEW ====
+# This file holds the shared app setup:
+# - packages live here
+# - app labels live here
+# - defaults live here
+# - shared helper functions live here
+# - the app-ready data gets loaded here
 
 
-# -----------------------------------------------------------------------------
-# 1) Packages
-# -----------------------------------------------------------------------------
+# ==== SETUP ====
+
 library(shiny)
 library(bslib)
 library(DT)
@@ -16,9 +16,11 @@ library(tidyverse)
 library(scales)
 
 
-# -----------------------------------------------------------------------------
-# 2) App title and labels
-# -----------------------------------------------------------------------------
+# ==== APP LABELS AND TEXT (EDIT HERE) ====
+
+# >>> EDIT HERE >>>
+# These are the easiest high-impact changes when you're making the app your own.
+# Update the title, filter labels, and tab labels here first.
 APP_TITLE <- "FAFSA Completion"
 
 LABELS <- 
@@ -27,16 +29,23 @@ LABELS <-
        scope_2 = "School",
        tab_plot = "FAFSA completion by month",
        tab_data = "Underlying data")
-
-# -----------------------------------------------------------------------------
-# 3) Main data object
-# -----------------------------------------------------------------------------
-APP_DATA = readRDS(file.path("input_data", "APP_DATA.rds"))
+# <<< END EDIT <<<
 
 
-# -----------------------------------------------------------------------------
-# 4) Choices used in ui.R
-# -----------------------------------------------------------------------------
+# ==== DATA INPUT (EDIT HERE) ====
+
+# >>> EDIT HERE >>>
+# This is the app-ready file written by organize.R.
+# Keeping the object name APP_DATA saves you from changing code all over the place.
+APP_DATA <- readRDS(file.path("input_data", "APP_DATA.rds"))
+# <<< END EDIT <<<
+
+
+# ==== CHOICES USED IN UI (EDIT HERE) ====
+
+# >>> EDIT HERE >>>
+# These feed the dropdowns in ui.R.
+
 YEAR <- 
   APP_DATA %>%
   distinct(SchoolYear) %>%
@@ -56,21 +65,26 @@ SCOPE_2_CHOICES <-
   distinct(SchoolName) %>%
   pull(SchoolName) %>%
   sort()
+# <<< END EDIT <<<
 
 
-# -----------------------------------------------------------------------------
-# 5) Defaults
-# -----------------------------------------------------------------------------
+# ==== DEFAULTS (EDIT HERE) ====
+
+# >>> EDIT HERE >>>
+# These set the app's opening view.
+
 DEFAULTS <- 
   list(year = max(YEAR),
-       scope_1 = "Christina School District", #SCOPE_1_CHOICES[[1]],
-       scope_2 = "Shue-Medill Middle School" #SCOPE_2_CHOICES[[1]]
-       )
+       scope_1 = SCOPE_1_CHOICES[[1]],
+       scope_2 = SCOPE_2_CHOICES[[1]])
+# <<< END EDIT <<<
 
 
-# -----------------------------------------------------------------------------
-# 6) Theme palette (special DDOE theme!)
-# -----------------------------------------------------------------------------
+# ==== THEME PALETTE (EDIT HERE) ====
+
+# >>> EDIT HERE >>>
+# This is the shared color palette for the app.
+# This is the current DDOE theme I've been using.
 dde_blue <- "#194a78"
 dde_blue_dark <- "#123758"
 dde_orange <- "#d98b00"
@@ -82,11 +96,17 @@ dde_border <- "#d8e2ec"
 dde_border_strong <- "#c7d5e2"
 dde_text <- "#1f2937"
 dde_muted <- "#5b6875"
+# <<< END EDIT <<<
 
 
-# -----------------------------------------------------------------------------
-# 7) Helper: filter data to selected scope
-# -----------------------------------------------------------------------------
+# ==== HELPER FUNCTIONS ====
+
+# These helpers keep repeated logic out of ui.R and server.R.
+# This is where you define the core of what the app does.
+
+
+# ==== DATA FILTERING ====
+
 data_filtered <- 
   function(data = APP_DATA,
            year = DEFAULTS$year,
@@ -100,14 +120,14 @@ data_filtered <-
   }
 
 
-# -----------------------------------------------------------------------------
-# 8) Helper: create plot-ready data
-# -----------------------------------------------------------------------------
+# ==== DATA TRANSFORMATION ====
+
 make_fafsa_plot_data <- 
   function(data = data_filtered()) {
     
-    month_levels <-
-      c("October", "November", "December", 
+    # FAFSA opens Oct. 1 and closes June 30 every every I think...
+    month_levels <- 
+      c("October", "November", "December",
         "January", "February", "March",
         "April", "May", "June")
     
@@ -115,41 +135,61 @@ make_fafsa_plot_data <-
       data %>%
       distinct(level, SchoolName, DistrictName, seniors)
     
-    school <- school_meta %>% filter(level == "school") %>% distinct(SchoolName, seniors)
-    district <- school_meta %>% filter(level == "lea") %>% distinct(DistrictName, seniors)
-    state <- school_meta %>% filter(level == "state") %>% distinct(DistrictName, seniors)
+    school <- 
+      school_meta %>%
+      filter(level == "school") %>%
+      distinct(SchoolName, seniors)
+    
+    district <- 
+      school_meta %>%
+      filter(level == "lea") %>%
+      distinct(DistrictName, seniors)
+    
+    state <- 
+      school_meta %>%
+      filter(level == "state") %>%
+      distinct(DistrictName, seniors)
     
     plot_dat0 <- 
       data %>%
       filter(completedFAFSA == "Complete",
              as.character(ApplicationReceiptMonth) %in% month_levels)
     
-    school_rows <- plot_dat0 %>% filter(SchoolName == school$SchoolName)
-    district_rows <- plot_dat0 %>% filter(DistrictName == district$DistrictName)
-    state_rows <- plot_dat0 %>% filter(level == "state")
+    school_rows <- 
+      plot_dat0 %>%
+      filter(SchoolName == school$SchoolName)
     
+    district_rows <- 
+      plot_dat0 %>%
+      filter(DistrictName == district$DistrictName)
+    
+    state_rows <- 
+      plot_dat0 %>%
+      filter(level == "state")
+    
+    # Add a starter row when a group has no data so all months get filled with zeros.
     if (nrow(school_rows) == 0) {
       school_blank <- 
-        tibble(group = school$SchoolName, 
+        tibble(group = school$SchoolName,
                ApplicationReceiptMonth = "October",
                completed = 0,
                seniors = school$seniors)} else {school_blank <- NULL}
     
     if (nrow(district_rows) == 0) {
       district_blank <- 
-        tibble(group = district$DistrictName, 
+        tibble(group = district$DistrictName,
                ApplicationReceiptMonth = "October",
                completed = 0,
                seniors = district$seniors)} else {district_blank <- NULL}
     
     if (nrow(state_rows) == 0) {
       state_blank <- 
-        tibble(group = "State", 
+        tibble(group = "State",
                ApplicationReceiptMonth = "October",
                completed = 0,
                seniors = state$seniors)} else {state_blank <- NULL}
     
-    plot_dat1 <-
+    plot_dat1 <- 
       plot_dat0 %>%
       mutate(ApplicationReceiptMonth = factor(as.character(ApplicationReceiptMonth),
                                               levels = month_levels,
@@ -158,26 +198,24 @@ make_fafsa_plot_data <-
                                level == "lea" ~ district$DistrictName,
                                level == "state" ~ "State",
                                .default = NA)) %>%
-      select(group, 
-             ApplicationReceiptMonth, 
-             completed = n, 
+      select(group,
+             ApplicationReceiptMonth,
+             completed = n,
              seniors) %>%
-      bind_rows(school_blank, 
+      bind_rows(school_blank,
                 district_blank,
-                state_blank) %>% 
+                state_blank) %>%
       group_by(group) %>%
-      complete(ApplicationReceiptMonth = factor(month_levels,
-                                                levels = month_levels,
-                                                ordered = T),
-               fill = list(completed = 0)) %>%
-      fill(seniors, 
-           .direction = "downup") %>%
-      arrange(ApplicationReceiptMonth, 
-              .by_group = T) %>%
-      mutate(group = factor(group, 
-                            levels = c(school$SchoolName, 
-                                       district$DistrictName, 
-                                       "State")),
+      complete(ApplicationReceiptMonth = factor(
+        month_levels,
+        levels = month_levels,
+        ordered = T),
+        fill = list(completed = 0)) %>%
+      fill(seniors, .direction = "downup") %>%
+      arrange(ApplicationReceiptMonth, .by_group = T) %>%
+      mutate(group = factor(group, levels = c(school$SchoolName,
+                                              district$DistrictName,
+                                              "State")),
              completion_rate = completed / seniors)
     
     list(data = plot_dat1,
@@ -186,9 +224,8 @@ make_fafsa_plot_data <-
   }
 
 
-# -----------------------------------------------------------------------------
-# 9) Helper: build main plot
-# -----------------------------------------------------------------------------
+# ==== PLOT HELPERS ====
+
 plot_fafsa_completion <- 
   function(data = data_filtered()) {
     
@@ -198,15 +235,15 @@ plot_fafsa_completion <-
     school_name <- plot_obj$school_name
     district_name <- plot_obj$district_name
     
-    ggplot(plot_dat,
-           aes(x = ApplicationReceiptMonth,
-               y = completion_rate,
-               fill = group,
-               label = percent(completion_rate, accuracy = 1))) +
+    plot_dat %>% 
+      ggplot(aes(x = ApplicationReceiptMonth,
+                 y = completion_rate,
+                 fill = group,
+                 label = percent(completion_rate, accuracy = 0.1))) +
       geom_col(position = position_dodge(width = 0.9)) +
-      geom_label(show.legend = F, 
-                 size = 3, 
-                 fontface = "bold", 
+      geom_label(show.legend = F,
+                 size = 3,
+                 fontface = "bold",
                  color = dde_surface,
                  position = position_dodge(width = 0.9),
                  vjust = -0.3) +
@@ -237,9 +274,8 @@ plot_fafsa_completion <-
   }
 
 
-# -----------------------------------------------------------------------------
-# 10) Helper: create table-ready data
-# -----------------------------------------------------------------------------
+# ==== TABLE HELPERS ====
+
 underlying_data <- 
   function(data = data_filtered()) {
     
@@ -257,9 +293,8 @@ underlying_data <-
   }
 
 
-# -----------------------------------------------------------------------------
-# 11) Helper: create summary text for the details card
-# -----------------------------------------------------------------------------
+# ==== SUMMARY TEXT HELPERS ====
+
 make_scope_note <- 
   function(data = data_filtered()) {
     
@@ -276,10 +311,13 @@ make_scope_note <-
     year_label <- paste0(year - 1, "\u2013", year - 2000)
     
     paste0("Showing monthly FAFSA completion percentages for ",
-           school_name, 
+           school_name,
            ", compared with ",
            district_name,
            " and the state for school year ",
            year_label,
            ".")
   }
+
+
+
