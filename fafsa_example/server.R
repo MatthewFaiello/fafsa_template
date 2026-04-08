@@ -76,8 +76,8 @@ server <-
         
         rc <-
           fltr %>% 
-          distinct(RaceReportTitle) %>% 
-          pull(RaceReportTitle) %>% 
+          distinct(race) %>% 
+          pull(race) %>% 
           sort()
         
         list("gender" = gndr, 

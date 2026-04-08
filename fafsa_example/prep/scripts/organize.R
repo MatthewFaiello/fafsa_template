@@ -79,6 +79,11 @@ fafsa2 <-
          gender = case_when(Gender == "F" ~ "Female",
                             Gender == "M" ~ "Male",
                             .default = NA),
+         race = case_when(RaceReportTitle == "African American" ~ "Black",
+                          RaceReportTitle == "American Indian" ~ "AI & AN",
+                          RaceReportTitle == "Hispanic/Latino" ~ "Latine",
+                          RaceReportTitle == "Hawaiian" ~ "NH & PI",
+                          .default = RaceReportTitle),
          completedFAFSA = case_when(CompletedFAFSA == "Y" ~ "Complete",
                                     CompletedFAFSA == "N" ~ "Incomplete",
                                     .default = NA),
@@ -103,7 +108,7 @@ school_denoms <-
            SchoolName,
            Grade,
            gender,
-           RaceReportTitle,
+           race,
            StudentID) %>%
   group_by(SchoolYear,
            DistrictCode,
@@ -112,7 +117,7 @@ school_denoms <-
            SchoolName,
            Grade,
            gender,
-           RaceReportTitle) %>%
+           race) %>%
   summarise(seniors = n(),
             .groups = "drop")
 
@@ -123,14 +128,14 @@ lea_denoms <-
            DistrictName,
            Grade,
            gender,
-           RaceReportTitle,
+           race,
            StudentID) %>%
   group_by(SchoolYear,
            DistrictCode,
            DistrictName,
            Grade,
            gender,
-           RaceReportTitle) %>%
+           race) %>%
   summarise(seniors = n(),
             .groups = "drop")
 
@@ -139,12 +144,12 @@ state_denoms <-
   distinct(SchoolYear,
            Grade,
            gender,
-           RaceReportTitle,
+           race,
            StudentID) %>%
   group_by(SchoolYear,
            Grade,
            gender,
-           RaceReportTitle) %>%
+           race) %>%
   summarise(seniors = n(),
             .groups = "drop")
 
@@ -160,7 +165,7 @@ fafsa2_school <-
            SchoolName,
            Grade,
            gender,
-           RaceReportTitle,
+           race,
            ApplicationReceiptMonth,
            completedFAFSA) %>%
   summarise(n = n_distinct(StudentID),
@@ -177,7 +182,7 @@ fafsa2_lea <-
            DistrictName,
            Grade,
            gender,
-           RaceReportTitle,
+           race,
            ApplicationReceiptMonth,
            completedFAFSA) %>%
   summarise(n = n_distinct(StudentID),
@@ -194,7 +199,7 @@ fafsa2_state <-
            SchoolYear,
            Grade,
            gender,
-           RaceReportTitle,
+           race,
            ApplicationReceiptMonth,
            completedFAFSA) %>%
   summarise(n = n_distinct(StudentID),
@@ -216,7 +221,7 @@ APP_DATA <-
           DistrictCode,
           SchoolCode,
           gender,
-          RaceReportTitle,
+          race,
           ApplicationReceiptMonth,
           completedFAFSA)
 
@@ -232,7 +237,7 @@ coverage_check <-
            SchoolName,
            Grade,
            gender,
-           RaceReportTitle) %>%
+           race) %>%
   summarise(seniors = first(seniors),
             total_n = sum(n, na.rm = TRUE),
             .groups = "drop") %>%
@@ -240,6 +245,7 @@ coverage_check <-
 
 #-------------------------write output----------------------------------------#
 ###############################################################################
+dir.create("input_data")
 write_rds(APP_DATA, file.path("input_data", "APP_DATA.rds"))
 
 

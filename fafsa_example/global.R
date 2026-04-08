@@ -68,9 +68,9 @@ OPTION_1_CHOICES <-
 
 OPTION_2_CHOICES <- 
   APP_DATA %>%
-  filter(!is.na(RaceReportTitle), RaceReportTitle != "NA") %>%
-  distinct(RaceReportTitle) %>%
-  pull(RaceReportTitle) %>%
+  filter(!is.na(race), race != "NA") %>%
+  distinct(race) %>%
+  pull(race) %>%
   sort()
 
 
@@ -118,7 +118,7 @@ data_filtered <-
              DistrictName %in% c(scope_1, "All LEAs"),
              SchoolName %in% c(scope_2, "All Schools"),
              gender %in% option_1,
-             RaceReportTitle %in% option_2)
+             race %in% option_2)
   }
 
 
@@ -145,7 +145,7 @@ make_fafsa_plot_data <-
     plot_dat0 <- 
       data %>%
       filter(completedFAFSA == "Complete",
-             RaceReportTitle != "NA",
+             race != "NA",
              as.character(ApplicationReceiptMonth) %in% month_levels) %>%
       mutate(ApplicationReceiptMonth = factor(as.character(ApplicationReceiptMonth),
                                               levels = month_levels,
@@ -157,18 +157,18 @@ make_fafsa_plot_data <-
     
     seniors <- 
       plot_dat0 %>%
-      distinct(SchoolYear, group, gender, RaceReportTitle, seniors) %>%
-      group_by(group, gender, RaceReportTitle) %>%
+      distinct(SchoolYear, group, gender, race, seniors) %>%
+      group_by(group, gender, race) %>%
       summarise(seniors = sum(seniors, na.rm = T),
                 .groups = "drop")
     
     plot_dat1 <- 
       plot_dat0 %>%
-      group_by(group, gender, RaceReportTitle, ApplicationReceiptMonth) %>%
+      group_by(group, gender, race, ApplicationReceiptMonth) %>%
       summarise(completed = sum(n, na.rm = T),
                 .groups = "drop") %>%
       left_join(seniors) %>%
-      group_by(group, gender, RaceReportTitle) %>%
+      group_by(group, gender, race) %>%
       complete(ApplicationReceiptMonth,
                fill = list(completed = 0)) %>%
       fill(seniors, .direction = "downup") %>%
@@ -204,7 +204,7 @@ plot_fafsa_completion <-
                label = percent(completion_rate, accuracy = 1))) +
       geom_line() +
       geom_point(size = 1.5) +
-      facet_grid(RaceReportTitle ~ gender) +
+      facet_grid(race ~ gender) +
       scale_color_manual(values = setNames(c(dde_orange, dde_blue, dde_muted),
                                            c(school_name, district_name, "State"))) +
       scale_y_continuous(labels = percent_format(accuracy = 1)) +
@@ -256,7 +256,7 @@ underlying_data <-
              `School Name` = SchoolName,
              Grade,
              Gender = gender,
-             Race = RaceReportTitle,
+             Race = race,
              `Application Receipt Month` = ApplicationReceiptMonth,
              Status = completedFAFSA,
              Count = n,

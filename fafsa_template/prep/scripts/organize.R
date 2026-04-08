@@ -258,4 +258,5 @@ coverage_check <-
 # ==== EXPORT (EDIT HERE) ====
 
 # Keep this path lined up with global.R.
+dir.create("input_data")
 write_rds(APP_DATA, file.path("input_data", "APP_DATA.rds"))
