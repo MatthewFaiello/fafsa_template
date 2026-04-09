@@ -1,0 +1,645 @@
+SchoolYear,leaType,County_Name,lea,DistrictCode,gradeLevel,teacher_General,teacher_SpecEd,teacherTotal,student_General,student_SpecEd,studentTotal,population
+2012,Charters,Kent,Academy of Dover Charter School,85,All Levels,18,0,18,238,18,256,31048
+2012,Charters,Kent,Campus Community School,74,All Levels,37,2,39,508,74,582,31048
+2012,Charters,Kent,Positive Outcomes Charter School,71,All Levels,12,2,14,53,72,125,31048
+2012,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,38,4,42,668,20,688,31048
+2012,Charters,New Castle,ASPIRA Delaware,69,All Levels,16,1,17,301,3,304,98145
+2012,Charters,New Castle,Charter School of New Castle,80,All Levels,40,1,41,726,25,751,98145
+2012,Charters,New Castle,East Side Charter School,72,All Levels,24,4,28,327,74,401,98145
+2012,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,41,5,46,690,39,729,98145
+2012,Charters,New Castle,Gateway Charter School,92,All Levels,15,0,15,83,100,183,98145
+2012,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,18,1,19,253,7,260,98145
+2012,Charters,New Castle,MOT Charter School,88,All Levels,33,5,38,652,25,677,98145
+2012,Charters,New Castle,Newark Charter School,89,All Levels,65,9,74,1265,79,1344,98145
+2012,Charters,New Castle,Odyssey Charter School,86,All Levels,37,3,40,482,18,500,98145
+2012,Charters,Sussex,Sussex Academy,77,All Levels,14,1,15,318,17,335,31616
+2012,Districts,Kent,Caesar Rodney School District,10,All Levels,365,134,499,6449,1089,7538,31048
+2012,Districts,Kent,Capital School District,13,All Levels,330,129,459,5194,1022,6216,31048
+2012,Districts,Kent,Lake Forest School District,15,All Levels,200,61,261,3327,463,3790,31048
+2012,Districts,Kent,Milford School District,18,All Levels,213,54,267,3554,539,4093,31048
+2012,Districts,Kent,POLYTECH School District,39,All Levels,77,9,86,1076,104,1180,31048
+2012,Districts,Kent,Smyrna School District,24,All Levels,249,65,314,4355,677,5032,31048
+2012,Districts,New Castle,Appoquinimink School District,29,All Levels,488,100,588,8470,870,9340,98145
+2012,Districts,New Castle,Brandywine School District,31,All Levels,616,160,776,9515,1129,10644,98145
+2012,Districts,New Castle,Christina School District,33,All Levels,876,360,1236,14056,2423,16479,98145
+2012,Districts,New Castle,Colonial School District,34,All Levels,522,111,633,8478,1241,9719,98145
+2012,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,316,37,353,4241,518,4759,98145
+2012,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,950,164,1114,15799,1948,17747,98145
+2012,Districts,Sussex,Cape Henlopen School District,17,All Levels,253,99,352,4027,768,4795,31616
+2012,Districts,Sussex,Delmar School District,37,All Levels,65,12,77,1178,127,1305,31616
+2012,Districts,Sussex,Indian River School District,36,All Levels,464,131,595,7465,1205,8670,31616
+2012,Districts,Sussex,Laurel School District,16,All Levels,113,31,144,1844,301,2145,31616
+2012,Districts,Sussex,Seaford School District,23,All Levels,184,44,228,2911,483,3394,31616
+2012,Districts,Sussex,Sussex Technical School District,40,All Levels,70,16,86,1194,115,1309,31616
+2012,Districts,Sussex,Woodbridge School District,35,All Levels,116,29,145,1957,280,2237,31616
+2013,Charters,Kent,Academy of Dover Charter School,85,All Levels,19,0,19,255,27,282,31424
+2013,Charters,Kent,Campus Community School,74,All Levels,26,3,29,385,44,429,31424
+2013,Charters,Kent,Positive Outcomes Charter School,71,All Levels,12,1,13,48,75,123,31424
+2013,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,36,2,38,662,33,695,31424
+2013,Charters,New Castle,ASPIRA Delaware,69,All Levels,19,1,20,330,8,338,97723
+2013,Charters,New Castle,Charter School of New Castle,80,All Levels,38,1,39,721,38,759,97723
+2013,Charters,New Castle,East Side Charter School,72,All Levels,26,6,32,321,71,392,97723
+2013,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,40,4,44,694,49,743,97723
+2013,Charters,New Castle,Gateway Charter School,92,All Levels,18,0,18,100,125,225,97723
+2013,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,18,1,19,249,14,263,97723
+2013,Charters,New Castle,MOT Charter School,88,All Levels,34,5,39,644,36,680,97723
+2013,Charters,New Castle,Newark Charter School,89,All Levels,67,10,77,1259,88,1347,97723
+2013,Charters,New Castle,Odyssey Charter School,86,All Levels,48,3,51,569,22,591,97723
+2013,Charters,Sussex,Sussex Academy,77,All Levels,15,1,16,326,14,340,31963
+2013,Districts,Kent,Caesar Rodney School District,10,All Levels,369,142,511,6498,1077,7575,31424
+2013,Districts,Kent,Capital School District,13,All Levels,332,133,465,5207,1076,6283,31424
+2013,Districts,Kent,Lake Forest School District,15,All Levels,197,61,258,3269,514,3783,31424
+2013,Districts,Kent,Milford School District,18,All Levels,200,56,256,3599,529,4128,31424
+2013,Districts,Kent,POLYTECH School District,39,All Levels,75,9,84,1079,104,1183,31424
+2013,Districts,Kent,Smyrna School District,24,All Levels,260,58,318,4425,665,5090,31424
+2013,Districts,New Castle,Appoquinimink School District,29,All Levels,477,100,577,8643,890,9533,97723
+2013,Districts,New Castle,Brandywine School District,31,All Levels,611,163,774,9472,1220,10692,97723
+2013,Districts,New Castle,Christina School District,33,All Levels,831,376,1207,14017,2408,16425,97723
+2013,Districts,New Castle,Colonial School District,34,All Levels,513,112,625,8598,1197,9795,97723
+2013,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,313,34,347,3949,538,4487,97723
+2013,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,960,171,1131,15936,1989,17925,97723
+2013,Districts,Sussex,Cape Henlopen School District,17,All Levels,260,114,374,4071,791,4862,31963
+2013,Districts,Sussex,Delmar School District,37,All Levels,65,11,76,1208,123,1331,31963
+2013,Districts,Sussex,Indian River School District,36,All Levels,484,134,618,7681,1233,8914,31963
+2013,Districts,Sussex,Laurel School District,16,All Levels,101,30,131,1758,288,2046,31963
+2013,Districts,Sussex,Seaford School District,23,All Levels,177,50,227,2914,476,3390,31963
+2013,Districts,Sussex,Sussex Technical School District,40,All Levels,76,16,92,1292,117,1409,31963
+2013,Districts,Sussex,Woodbridge School District,35,All Levels,116,28,144,1973,264,2237,31963
+2014,Charters,Kent,Academy of Dover Charter School,85,All Levels,20,0,20,282,26,308,31807
+2014,Charters,Kent,Campus Community School,74,All Levels,25,2,27,374,37,411,31807
+2014,Charters,Kent,Positive Outcomes Charter School,71,All Levels,12,1,13,44,76,120,31807
+2014,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,38,1,39,666,31,697,31807
+2014,Charters,New Castle,ASPIRA Delaware,69,All Levels,25,2,27,419,20,439,97714
+2014,Charters,New Castle,Charter School of New Castle,80,All Levels,44,1,45,776,49,825,97714
+2014,Charters,New Castle,East Side Charter School,72,All Levels,26,7,33,342,61,403,97714
+2014,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,43,4,47,697,51,748,97714
+2014,Charters,New Castle,Gateway Charter School,92,All Levels,19,1,20,86,122,208,97714
+2014,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,19,1,20,281,17,298,97714
+2014,Charters,New Castle,MOT Charter School,88,All Levels,32,5,37,639,40,679,97714
+2014,Charters,New Castle,Newark Charter School,89,All Levels,89,11,100,1660,100,1760,97714
+2014,Charters,New Castle,Odyssey Charter School,86,All Levels,61,4,65,674,28,702,97714
+2014,Charters,Sussex,Sussex Academy,77,All Levels,20,1,21,394,18,412,32344
+2014,Districts,Kent,Caesar Rodney School District,10,All Levels,368,135,503,6631,1046,7677,31807
+2014,Districts,Kent,Capital School District,13,All Levels,337,140,477,5342,1097,6439,31807
+2014,Districts,Kent,Lake Forest School District,15,All Levels,191,59,250,3208,479,3687,31807
+2014,Districts,Kent,Milford School District,18,All Levels,196,58,254,3633,505,4138,31807
+2014,Districts,Kent,POLYTECH School District,39,All Levels,77,9,86,1094,112,1206,31807
+2014,Districts,Kent,Smyrna School District,24,All Levels,256,57,313,4465,697,5162,31807
+2014,Districts,New Castle,Appoquinimink School District,29,All Levels,483,107,590,8712,944,9656,97714
+2014,Districts,New Castle,Brandywine School District,31,All Levels,590,161,751,9380,1265,10645,97714
+2014,Districts,New Castle,Christina School District,33,All Levels,825,374,1199,13845,2505,16350,97714
+2014,Districts,New Castle,Colonial School District,34,All Levels,522,112,634,8615,1220,9835,97714
+2014,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,318,36,354,3991,557,4548,97714
+2014,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,942,182,1124,16092,2038,18130,97714
+2014,Districts,Sussex,Cape Henlopen School District,17,All Levels,266,110,376,4199,775,4974,32344
+2014,Districts,Sussex,Delmar School District,37,All Levels,67,11,78,1222,122,1344,32344
+2014,Districts,Sussex,Indian River School District,36,All Levels,509,140,649,7916,1312,9228,32344
+2014,Districts,Sussex,Laurel School District,16,All Levels,93,30,123,1816,293,2109,32344
+2014,Districts,Sussex,Seaford School District,23,All Levels,176,56,232,2907,516,3423,32344
+2014,Districts,Sussex,Sussex Technical School District,40,All Levels,80,14,94,1377,114,1491,32344
+2014,Districts,Sussex,Woodbridge School District,35,All Levels,118,27,145,2028,263,2291,32344
+2015,Charters,Kent,Academy of Dover Charter School,85,All Levels,19,1,20,257,33,290,32178
+2015,Charters,Kent,Campus Community School,74,All Levels,22,5,27,377,33,410,32178
+2015,Charters,Kent,Early College High School at Del State,9604,All Levels,3,1,4,126,3,129,32178
+2015,Charters,Kent,Positive Outcomes Charter School,71,All Levels,13,1,14,43,83,126,32178
+2015,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,39,1,40,653,35,688,32178
+2015,Charters,New Castle,ASPIRA Delaware,69,All Levels,32,3,35,510,31,541,97592
+2015,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,14,0,14,219,2,221,97592
+2015,Charters,New Castle,Charter School of New Castle,80,All Levels,50,3,53,768,43,811,97592
+2015,Charters,New Castle,East Side Charter School,72,All Levels,26,9,35,356,62,418,97592
+2015,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,44,3,47,692,53,745,97592
+2015,Charters,New Castle,First State Montessori Academy,9606,All Levels,13,0,13,265,15,280,97592
+2015,Charters,New Castle,Gateway Charter School,92,All Levels,17,2,19,85,127,212,97592
+2015,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,27,1,28,435,29,464,97592
+2015,Charters,New Castle,MOT Charter School,88,All Levels,41,6,47,816,53,869,97592
+2015,Charters,New Castle,Newark Charter School,89,All Levels,98,13,111,1839,109,1948,97592
+2015,Charters,New Castle,Odyssey Charter School,86,All Levels,74,5,79,893,40,933,97592
+2015,Charters,Sussex,Sussex Academy,77,All Levels,25,1,26,481,17,498,32826
+2015,Districts,Kent,Caesar Rodney School District,10,All Levels,371,136,507,6571,1070,7641,32178
+2015,Districts,Kent,Capital School District,13,All Levels,345,132,477,5478,1112,6590,32178
+2015,Districts,Kent,Lake Forest School District,15,All Levels,197,59,256,3228,520,3748,32178
+2015,Districts,Kent,Milford School District,18,All Levels,201,57,258,3626,514,4140,32178
+2015,Districts,Kent,POLYTECH School District,39,All Levels,75,12,87,1084,108,1192,32178
+2015,Districts,Kent,Smyrna School District,24,All Levels,267,61,328,4491,712,5203,32178
+2015,Districts,New Castle,Appoquinimink School District,29,All Levels,493,117,610,8753,1006,9759,97592
+2015,Districts,New Castle,Brandywine School District,31,All Levels,595,143,738,9289,1302,10591,97592
+2015,Districts,New Castle,Christina School District,33,All Levels,813,355,1168,13341,2560,15901,97592
+2015,Districts,New Castle,Colonial School District,34,All Levels,516,114,630,8355,1328,9683,97592
+2015,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,318,35,353,4064,565,4629,97592
+2015,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,946,176,1122,15858,1991,17849,97592
+2015,Districts,Sussex,Cape Henlopen School District,17,All Levels,272,116,388,4225,793,5018,32826
+2015,Districts,Sussex,Delmar School District,37,All Levels,67,11,78,1243,124,1367,32826
+2015,Districts,Sussex,Indian River School District,36,All Levels,556,132,688,8241,1410,9651,32826
+2015,Districts,Sussex,Laurel School District,16,All Levels,95,30,125,1838,308,2146,32826
+2015,Districts,Sussex,Seaford School District,23,All Levels,180,70,250,2902,548,3450,32826
+2015,Districts,Sussex,Sussex Technical School District,40,All Levels,82,11,93,1441,104,1545,32826
+2015,Districts,Sussex,Woodbridge School District,35,All Levels,118,32,150,2085,278,2363,32826
+2016,Charters,Kent,Academy of Dover Charter School,85,All Levels,19,2,21,257,27,284,32215
+2016,Charters,Kent,Campus Community School,74,All Levels,21,3,24,389,28,417,32215
+2016,Charters,Kent,Early College High School at Del State,9604,All Levels,6,3,9,187,22,209,32215
+2016,Charters,Kent,First State Military Academy,9607,All Levels,10,0,10,163,39,202,32215
+2016,Charters,Kent,Positive Outcomes Charter School,71,All Levels,13,1,14,47,79,126,32215
+2016,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,38,2,40,655,35,690,32215
+2016,Charters,New Castle,ASPIRA Delaware,69,All Levels,37,8,45,585,54,639,97138
+2016,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,18,1,19,313,7,320,97138
+2016,Charters,New Castle,Charter School of New Castle,80,All Levels,42,3,45,724,68,792,97138
+2016,Charters,New Castle,East Side Charter School,72,All Levels,30,7,37,386,57,443,97138
+2016,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,42,3,45,705,53,758,97138
+2016,Charters,New Castle,First State Montessori Academy,9606,All Levels,17,0,17,301,24,325,97138
+2016,Charters,New Castle,Freire Charter School Wilmington,9612,All Levels,13,0,13,219,15,234,97138
+2016,Charters,New Castle,Gateway Charter School,92,All Levels,18,2,20,83,129,212,97138
+2016,Charters,New Castle,Great Oaks Charter School,9611,All Levels,7,0,7,178,34,212,97138
+2016,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,36,3,39,576,68,644,97138
+2016,Charters,New Castle,MOT Charter School,88,All Levels,49,6,55,944,69,1013,97138
+2016,Charters,New Castle,Newark Charter School,89,All Levels,113,15,128,2002,138,2140,97138
+2016,Charters,New Castle,Odyssey Charter School,86,All Levels,80,5,85,1104,57,1161,97138
+2016,Charters,Sussex,Sussex Academy,77,All Levels,30,1,31,565,29,594,33369
+2016,Districts,Kent,Caesar Rodney School District,10,All Levels,377,142,519,6525,1089,7614,32215
+2016,Districts,Kent,Capital School District,13,All Levels,337,127,464,5257,1159,6416,32215
+2016,Districts,Kent,Lake Forest School District,15,All Levels,188,58,246,3190,524,3714,32215
+2016,Districts,Kent,Milford School District,18,All Levels,199,63,262,3541,532,4073,32215
+2016,Districts,Kent,POLYTECH School District,39,All Levels,75,12,87,1094,100,1194,32215
+2016,Districts,Kent,Smyrna School District,24,All Levels,244,85,329,4433,729,5162,32215
+2016,Districts,New Castle,Appoquinimink School District,29,All Levels,507,121,628,9140,1128,10268,97138
+2016,Districts,New Castle,Brandywine School District,31,All Levels,581,151,732,9061,1362,10423,97138
+2016,Districts,New Castle,Christina School District,33,All Levels,687,367,1054,12634,2575,15209,97138
+2016,Districts,New Castle,Colonial School District,34,All Levels,513,121,634,8163,1455,9618,97138
+2016,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,318,36,354,4135,563,4698,97138
+2016,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,951,172,1123,15617,1976,17593,97138
+2016,Districts,Sussex,Cape Henlopen School District,17,All Levels,280,118,398,4274,819,5093,33369
+2016,Districts,Sussex,Delmar School District,37,All Levels,67,11,78,1215,130,1345,33369
+2016,Districts,Sussex,Indian River School District,36,All Levels,559,141,700,8494,1473,9967,33369
+2016,Districts,Sussex,Laurel School District,16,All Levels,105,36,141,1877,326,2203,33369
+2016,Districts,Sussex,Seaford School District,23,All Levels,181,57,238,2877,536,3413,33369
+2016,Districts,Sussex,Sussex Technical School District,40,All Levels,79,11,90,1345,99,1444,33369
+2016,Districts,Sussex,Woodbridge School District,35,All Levels,121,34,155,2159,282,2441,33369
+2017,Charters,Kent,Academy of Dover Charter School,85,All Levels,17,1,18,232,15,247,32422
+2017,Charters,Kent,Campus Community School,74,All Levels,19,3,22,376,37,413,32422
+2017,Charters,Kent,Early College High School at Del State,9604,All Levels,11,2,13,272,17,289,32422
+2017,Charters,Kent,First State Military Academy,9607,All Levels,12,0,12,236,52,288,32422
+2017,Charters,Kent,Positive Outcomes Charter School,71,All Levels,12,3,15,42,83,125,32422
+2017,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,39,3,42,667,33,700,32422
+2017,Charters,New Castle,ASPIRA Delaware,69,All Levels,39,11,50,637,61,698,97298
+2017,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,23,1,24,401,14,415,97298
+2017,Charters,New Castle,Charter School of New Castle,80,All Levels,43,3,46,698,61,759,97298
+2017,Charters,New Castle,East Side Charter School,72,All Levels,33,3,36,389,57,446,97298
+2017,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,41,5,46,690,49,739,97298
+2017,Charters,New Castle,First State Montessori Academy,9606,All Levels,35,0,35,392,36,428,97298
+2017,Charters,New Castle,Freire Charter School Wilmington,9612,All Levels,16,0,16,270,52,322,97298
+2017,Charters,New Castle,Gateway Charter School,92,All Levels,22,4,26,99,122,221,97298
+2017,Charters,New Castle,Great Oaks Charter School,9611,All Levels,12,0,12,280,63,343,97298
+2017,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,42,2,44,660,84,744,97298
+2017,Charters,New Castle,MOT Charter School,88,All Levels,57,7,64,1089,70,1159,97298
+2017,Charters,New Castle,Newark Charter School,89,All Levels,121,19,140,2164,158,2322,97298
+2017,Charters,New Castle,Odyssey Charter School,86,All Levels,98,9,107,1361,79,1440,97298
+2017,Charters,Sussex,Sussex Academy,77,All Levels,34,1,35,664,28,692,33851
+2017,Districts,Kent,Caesar Rodney School District,10,All Levels,383,142,525,6582,1145,7727,32422
+2017,Districts,Kent,Capital School District,13,All Levels,336,124,460,5276,1128,6404,32422
+2017,Districts,Kent,Lake Forest School District,15,All Levels,189,59,248,3172,532,3704,32422
+2017,Districts,Kent,Milford School District,18,All Levels,199,61,260,3516,521,4037,32422
+2017,Districts,Kent,POLYTECH School District,39,All Levels,74,12,86,1098,102,1200,32422
+2017,Districts,Kent,Smyrna School District,24,All Levels,185,160,345,4510,795,5305,32422
+2017,Districts,New Castle,Appoquinimink School District,29,All Levels,532,141,673,9245,1280,10525,97298
+2017,Districts,New Castle,Brandywine School District,31,All Levels,568,159,727,8877,1366,10243,97298
+2017,Districts,New Castle,Christina School District,33,All Levels,735,381,1116,12031,2655,14686,97298
+2017,Districts,New Castle,Colonial School District,34,All Levels,516,122,638,8223,1526,9749,97298
+2017,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,318,36,354,4121,571,4692,97298
+2017,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,935,173,1108,15208,2048,17256,97298
+2017,Districts,Sussex,Cape Henlopen School District,17,All Levels,286,120,406,4341,843,5184,33851
+2017,Districts,Sussex,Delmar School District,37,All Levels,64,11,75,1181,122,1303,33851
+2017,Districts,Sussex,Indian River School District,36,All Levels,584,150,734,8689,1578,10267,33851
+2017,Districts,Sussex,Laurel School District,16,All Levels,110,40,150,2013,313,2326,33851
+2017,Districts,Sussex,Seaford School District,23,All Levels,179,61,240,2890,553,3443,33851
+2017,Districts,Sussex,Sussex Technical School District,40,All Levels,79,11,90,1243,101,1344,33851
+2017,Districts,Sussex,Woodbridge School District,35,All Levels,125,35,160,2165,308,2473,33851
+2018,Charters,Kent,Academy of Dover Charter School,85,All Levels,17,0,17,252,18,270,32455
+2018,Charters,Kent,Campus Community School,74,All Levels,24,1,25,379,38,417,32455
+2018,Charters,Kent,Early College High School at Del State,9604,All Levels,15,2,17,387,33,420,32455
+2018,Charters,Kent,First State Military Academy,9607,All Levels,18,0,18,348,61,409,32455
+2018,Charters,Kent,Positive Outcomes Charter School,71,All Levels,11,3,14,39,87,126,32455
+2018,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,38,3,41,654,36,690,32455
+2018,Charters,New Castle,ASPIRA Delaware,69,All Levels,41,12,53,676,64,740,96964
+2018,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,26,1,27,464,30,494,96964
+2018,Charters,New Castle,Charter School of New Castle,80,All Levels,41,3,44,683,68,751,96964
+2018,Charters,New Castle,East Side Charter School,72,All Levels,33,2,35,355,60,415,96964
+2018,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,41,3,44,681,51,732,96964
+2018,Charters,New Castle,First State Montessori Academy,9606,All Levels,28,0,28,455,54,509,96964
+2018,Charters,New Castle,Freire Charter School Wilmington,9612,All Levels,21,0,21,333,78,411,96964
+2018,Charters,New Castle,Gateway Charter School,92,All Levels,19,4,23,81,108,189,96964
+2018,Charters,New Castle,Great Oaks Charter School,9611,All Levels,16,2,18,360,88,448,96964
+2018,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,47,2,49,644,75,719,96964
+2018,Charters,New Castle,MOT Charter School,88,All Levels,66,7,73,1217,71,1288,96964
+2018,Charters,New Castle,Newark Charter School,89,All Levels,119,19,138,2188,166,2354,96964
+2018,Charters,New Castle,Odyssey Charter School,86,All Levels,115,14,129,1571,91,1662,96964
+2018,Charters,Sussex,Sussex Academy,77,All Levels,36,1,37,723,36,759,34371
+2018,Districts,Kent,Caesar Rodney School District,10,All Levels,396,144,540,6665,1178,7843,32455
+2018,Districts,Kent,Capital School District,13,All Levels,339,133,472,5194,1160,6354,32455
+2018,Districts,Kent,Lake Forest School District,15,All Levels,189,60,249,3157,583,3740,32455
+2018,Districts,Kent,Milford School District,18,All Levels,201,64,265,3545,515,4060,32455
+2018,Districts,Kent,POLYTECH School District,39,All Levels,74,13,87,1090,98,1188,32455
+2018,Districts,Kent,Smyrna School District,24,All Levels,181,171,352,4587,824,5411,32455
+2018,Districts,New Castle,Appoquinimink School District,29,All Levels,552,150,702,9360,1388,10748,96964
+2018,Districts,New Castle,Brandywine School District,31,All Levels,556,168,724,8807,1483,10290,96964
+2018,Districts,New Castle,Christina School District,33,All Levels,730,382,1112,11618,2659,14277,96964
+2018,Districts,New Castle,Colonial School District,34,All Levels,509,126,635,8085,1584,9669,96964
+2018,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,320,37,357,4130,586,4716,96964
+2018,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,920,191,1111,14862,2170,17032,96964
+2018,Districts,Sussex,Cape Henlopen School District,17,All Levels,300,136,436,4526,844,5370,34371
+2018,Districts,Sussex,Delmar School District,37,All Levels,61,10,71,1222,123,1345,34371
+2018,Districts,Sussex,Indian River School District,36,All Levels,601,160,761,8813,1630,10443,34371
+2018,Districts,Sussex,Laurel School District,16,All Levels,116,39,155,2064,348,2412,34371
+2018,Districts,Sussex,Seaford School District,23,All Levels,182,60,242,2868,545,3413,34371
+2018,Districts,Sussex,Sussex Technical School District,40,All Levels,78,10,88,1152,96,1248,34371
+2018,Districts,Sussex,Woodbridge School District,35,All Levels,129,36,165,2128,374,2502,34371
+2019,Charters,Kent,Academy of Dover Charter School,85,All Levels,18,2,20,256,16,272,32432
+2019,Charters,Kent,Campus Community School,74,All Levels,23,1,24,371,37,408,32432
+2019,Charters,Kent,Early College High School at Del State,9604,All Levels,16,2,18,358,35,393,32432
+2019,Charters,Kent,First State Military Academy,9607,All Levels,20,0,20,373,63,436,32432
+2019,Charters,Kent,Positive Outcomes Charter School,71,All Levels,11,4,15,40,80,120,32432
+2019,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,38,3,41,647,43,690,32432
+2019,Charters,New Castle,ASPIRA Delaware,69,All Levels,47,13,60,710,75,785,96719
+2019,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,33,3,36,570,33,603,96719
+2019,Charters,New Castle,Charter School of New Castle,80,All Levels,41,4,45,699,64,763,96719
+2019,Charters,New Castle,East Side Charter School,72,All Levels,32,4,36,358,64,422,96719
+2019,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,38,4,42,680,50,730,96719
+2019,Charters,New Castle,First State Montessori Academy,9606,All Levels,30,0,30,511,49,560,96719
+2019,Charters,New Castle,Freire Charter School Wilmington,9612,All Levels,21,5,26,405,74,479,96719
+2019,Charters,New Castle,Gateway Charter School,92,All Levels,15,3,18,76,96,172,96719
+2019,Charters,New Castle,Great Oaks Charter School,9611,All Levels,17,4,21,342,98,440,96719
+2019,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,48,4,52,585,76,661,96719
+2019,Charters,New Castle,MOT Charter School,88,All Levels,69,7,76,1238,76,1314,96719
+2019,Charters,New Castle,Newark Charter School,89,All Levels,121,21,142,2218,168,2386,96719
+2019,Charters,New Castle,Odyssey Charter School,86,All Levels,131,16,147,1685,118,1803,96719
+2019,Charters,Sussex,Sussex Academy,77,All Levels,36,2,38,766,29,795,34754
+2019,Districts,Kent,Caesar Rodney School District,10,All Levels,396,149,545,6709,1196,7905,32432
+2019,Districts,Kent,Capital School District,13,All Levels,346,140,486,5195,1175,6370,32432
+2019,Districts,Kent,Lake Forest School District,15,All Levels,190,59,249,3060,611,3671,32432
+2019,Districts,Kent,Milford School District,18,All Levels,208,65,273,3604,549,4153,32432
+2019,Districts,Kent,POLYTECH School District,39,All Levels,74,13,87,1088,111,1199,32432
+2019,Districts,Kent,Smyrna School District,24,All Levels,182,179,361,4722,870,5592,32432
+2019,Districts,New Castle,Appoquinimink School District,29,All Levels,573,161,734,9605,1557,11162,96719
+2019,Districts,New Castle,Brandywine School District,31,All Levels,567,168,735,8688,1590,10278,96719
+2019,Districts,New Castle,Christina School District,33,All Levels,748,388,1136,11272,2740,14012,96719
+2019,Districts,New Castle,Colonial School District,34,All Levels,523,146,669,8030,1698,9728,96719
+2019,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,318,38,356,4094,600,4694,96719
+2019,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,919,196,1115,14427,2266,16693,96719
+2019,Districts,Sussex,Cape Henlopen School District,17,All Levels,302,139,441,4683,863,5546,34754
+2019,Districts,Sussex,Delmar School District,37,All Levels,64,10,74,1239,130,1369,34754
+2019,Districts,Sussex,Indian River School District,36,All Levels,606,192,798,8889,1616,10505,34754
+2019,Districts,Sussex,Laurel School District,16,All Levels,120,38,158,2117,365,2482,34754
+2019,Districts,Sussex,Seaford School District,23,All Levels,187,58,245,2863,540,3403,34754
+2019,Districts,Sussex,Sussex Technical School District,40,All Levels,75,10,85,1142,98,1240,34754
+2019,Districts,Sussex,Woodbridge School District,35,All Levels,129,38,167,2104,395,2499,34754
+2020,Charters,Kent,Academy of Dover Charter School,85,All Levels,17,2,19,239,27,266,32666
+2020,Charters,Kent,Campus Community School,74,All Levels,23,1,24,376,44,420,32666
+2020,Charters,Kent,Early College High School at Del State,9604,All Levels,12,1,13,394,27,421,32666
+2020,Charters,Kent,First State Military Academy,9607,All Levels,24,0,24,381,71,452,32666
+2020,Charters,Kent,Positive Outcomes Charter School,71,All Levels,11,4,15,43,78,121,32666
+2020,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,37,3,40,649,54,703,32666
+2020,Charters,New Castle,ASPIRA Delaware,69,All Levels,52,13,65,845,101,946,96185
+2020,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,34,5,39,547,48,595,96185
+2020,Charters,New Castle,Charter School of New Castle,80,All Levels,43,4,47,686,80,766,96185
+2020,Charters,New Castle,East Side Charter School,72,All Levels,30,3,33,368,58,426,96185
+2020,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,40,3,43,676,52,728,96185
+2020,Charters,New Castle,First State Montessori Academy,9606,All Levels,32,0,32,534,65,599,96185
+2020,Charters,New Castle,Freire Charter School Wilmington,9612,All Levels,20,6,26,386,101,487,96185
+2020,Charters,New Castle,Gateway Charter School,92,All Levels,21,2,23,86,91,177,96185
+2020,Charters,New Castle,Great Oaks Charter School,9611,All Levels,19,6,25,385,94,479,96185
+2020,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,45,6,51,569,99,668,96185
+2020,Charters,New Castle,MOT Charter School,88,All Levels,71,9,80,1290,85,1375,96185
+2020,Charters,New Castle,Newark Charter School,89,All Levels,118,23,141,2241,171,2412,96185
+2020,Charters,New Castle,Odyssey Charter School,86,All Levels,140,16,156,1783,133,1916,96185
+2020,Charters,Sussex,Sussex Academy,77,All Levels,39,2,41,828,30,858,35087
+2020,Districts,Kent,Caesar Rodney School District,10,All Levels,407,151,558,6849,1193,8042,32666
+2020,Districts,Kent,Capital School District,13,All Levels,350,143,493,5181,1271,6452,32666
+2020,Districts,Kent,Lake Forest School District,15,All Levels,194,61,255,3004,641,3645,32666
+2020,Districts,Kent,Milford School District,18,All Levels,215,65,280,3670,544,4214,32666
+2020,Districts,Kent,POLYTECH School District,39,All Levels,73,13,86,1076,116,1192,32666
+2020,Districts,Kent,Smyrna School District,24,All Levels,192,193,385,4867,896,5763,32666
+2020,Districts,New Castle,Appoquinimink School District,29,All Levels,590,174,764,9881,1682,11563,96185
+2020,Districts,New Castle,Brandywine School District,31,All Levels,591,181,772,8728,1611,10339,96185
+2020,Districts,New Castle,Christina School District,33,All Levels,711,411,1122,10805,2766,13571,96185
+2020,Districts,New Castle,Colonial School District,34,All Levels,531,150,681,7938,1804,9742,96185
+2020,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,318,42,360,4060,609,4669,96185
+2020,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,933,237,1170,14316,2447,16763,96185
+2020,Districts,Sussex,Cape Henlopen School District,17,All Levels,310,144,454,4832,903,5735,35087
+2020,Districts,Sussex,Delmar School District,37,All Levels,62,11,73,1267,136,1403,35087
+2020,Districts,Sussex,Indian River School District,36,All Levels,596,208,804,9097,1618,10715,35087
+2020,Districts,Sussex,Laurel School District,16,All Levels,130,41,171,2230,373,2603,35087
+2020,Districts,Sussex,Seaford School District,23,All Levels,176,60,236,2887,580,3467,35087
+2020,Districts,Sussex,Sussex Technical School District,40,All Levels,74,11,85,1131,110,1241,35087
+2020,Districts,Sussex,Woodbridge School District,35,All Levels,132,41,173,2170,396,2566,35087
+2021,Charters,Kent,Academy of Dover Charter School,85,All Levels,23,1,24,287,42,329,32876
+2021,Charters,Kent,Campus Community School,74,All Levels,24,1,25,367,46,413,32876
+2021,Charters,Kent,Early College High School at Del State,9604,All Levels,13,2,15,366,33,399,32876
+2021,Charters,Kent,First State Military Academy,9607,All Levels,23,2,25,376,82,458,32876
+2021,Charters,Kent,Positive Outcomes Charter School,71,All Levels,10,4,14,40,72,112,32876
+2021,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,40,2,42,638,69,707,32876
+2021,Charters,New Castle,ASPIRA Delaware,69,All Levels,55,15,70,929,131,1060,96044
+2021,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,34,5,39,572,40,612,96044
+2021,Charters,New Castle,Charter School of New Castle,80,All Levels,40,3,43,685,77,762,96044
+2021,Charters,New Castle,East Side Charter School,72,All Levels,37,3,40,392,57,449,96044
+2021,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,39,6,45,656,45,701,96044
+2021,Charters,New Castle,First State Montessori Academy,9606,All Levels,31,0,31,539,65,604,96044
+2021,Charters,New Castle,Freire Charter School Wilmington,9612,All Levels,25,4,29,402,99,501,96044
+2021,Charters,New Castle,Gateway Charter School,92,All Levels,19,2,21,83,75,158,96044
+2021,Charters,New Castle,Great Oaks Charter School,9611,All Levels,21,5,26,233,85,318,96044
+2021,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,42,9,51,540,104,644,96044
+2021,Charters,New Castle,MOT Charter School,88,All Levels,69,12,81,1288,95,1383,96044
+2021,Charters,New Castle,Newark Charter School,89,All Levels,117,24,141,2262,174,2436,96044
+2021,Charters,New Castle,Odyssey Charter School,86,All Levels,128,19,147,1767,159,1926,96044
+2021,Charters,Sussex,Sussex Academy,77,All Levels,56,4,60,1071,55,1126,35392
+2021,Charters,Sussex,Sussex Montessori School,9614,All Levels,10,1,11,240,20,260,35392
+2021,Districts,Kent,Caesar Rodney School District,10,All Levels,396,150,546,6651,1169,7820,32876
+2021,Districts,Kent,Capital School District,13,All Levels,364,147,511,4970,1212,6182,32876
+2021,Districts,Kent,Lake Forest School District,15,All Levels,195,57,252,2834,611,3445,32876
+2021,Districts,Kent,Milford School District,18,All Levels,215,66,281,3612,582,4194,32876
+2021,Districts,Kent,POLYTECH School District,39,All Levels,74,12,86,1063,119,1182,32876
+2021,Districts,Kent,Smyrna School District,24,All Levels,196,200,396,4884,887,5771,32876
+2021,Districts,New Castle,Appoquinimink School District,29,All Levels,607,188,795,10050,1687,11737,96044
+2021,Districts,New Castle,Brandywine School District,31,All Levels,594,182,776,8603,1614,10217,96044
+2021,Districts,New Castle,Christina School District,33,All Levels,698,428,1126,10063,2681,12744,96044
+2021,Districts,New Castle,Colonial School District,34,All Levels,540,148,688,7778,1852,9630,96044
+2021,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,323,44,367,4075,616,4691,96044
+2021,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,928,240,1168,13931,2391,16322,96044
+2021,Districts,Sussex,Cape Henlopen School District,17,All Levels,312,161,473,4845,916,5761,35392
+2021,Districts,Sussex,Delmar School District,37,All Levels,61,12,73,1254,121,1375,35392
+2021,Districts,Sussex,Indian River School District,36,All Levels,595,192,787,8836,1579,10415,35392
+2021,Districts,Sussex,Laurel School District,16,All Levels,136,38,174,2134,384,2518,35392
+2021,Districts,Sussex,Seaford School District,23,All Levels,173,62,235,2717,526,3243,35392
+2021,Districts,Sussex,Sussex Technical School District,40,All Levels,73,13,86,1118,121,1239,35392
+2021,Districts,Sussex,Woodbridge School District,35,All Levels,132,41,173,2061,385,2446,35392
+2022,Charters,Kent,Academy of Dover Charter School,85,All Levels,28,0,28,326,49,375,32997
+2022,Charters,Kent,Campus Community School,74,All Levels,27,2,29,358,39,397,32997
+2022,Charters,Kent,Early College High School at Del State,9604,All Levels,15,4,19,315,27,342,32997
+2022,Charters,Kent,First State Military Academy,9607,All Levels,24,3,27,371,85,456,32997
+2022,Charters,Kent,Positive Outcomes Charter School,71,All Levels,11,3,14,38,66,104,32997
+2022,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,40,6,46,635,67,702,32997
+2022,Charters,New Castle,ASPIRA Delaware,69,All Levels,69,12,81,1068,157,1225,95977
+2022,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,35,4,39,571,42,613,95977
+2022,Charters,New Castle,Charter School of New Castle,80,All Levels,41,4,45,680,81,761,95977
+2022,Charters,New Castle,East Side Charter School,72,All Levels,34,4,38,421,53,474,95977
+2022,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,34,8,42,653,47,700,95977
+2022,Charters,New Castle,First State Montessori Academy,9606,All Levels,33,0,33,534,66,600,95977
+2022,Charters,New Castle,Freire Charter School Wilmington,9612,All Levels,31,1,32,394,109,503,95977
+2022,Charters,New Castle,Gateway Charter School,92,All Levels,19,2,21,103,75,178,95977
+2022,Charters,New Castle,Great Oaks Charter School,9611,All Levels,19,4,23,208,77,285,95977
+2022,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,45,11,56,533,104,637,95977
+2022,Charters,New Castle,MOT Charter School,88,All Levels,66,11,77,1282,94,1376,95977
+2022,Charters,New Castle,Newark Charter School,89,All Levels,119,27,146,2261,197,2458,95977
+2022,Charters,New Castle,Odyssey Charter School,86,All Levels,122,22,144,1827,161,1988,95977
+2022,Charters,Sussex,Sussex Academy,77,All Levels,59,3,62,1068,52,1120,35609
+2022,Charters,Sussex,Sussex Montessori School,9614,All Levels,14,2,16,313,28,341,35609
+2022,Districts,Kent,Caesar Rodney School District,10,All Levels,423,157,580,6857,1235,8092,32997
+2022,Districts,Kent,Capital School District,13,All Levels,342,142,484,5068,1193,6261,32997
+2022,Districts,Kent,Lake Forest School District,15,All Levels,194,55,249,2893,595,3488,32997
+2022,Districts,Kent,Milford School District,18,All Levels,223,68,291,3685,644,4329,32997
+2022,Districts,Kent,POLYTECH School District,39,All Levels,78,11,89,1064,132,1196,32997
+2022,Districts,Kent,Smyrna School District,24,All Levels,193,195,388,5007,915,5922,32997
+2022,Districts,New Castle,Appoquinimink School District,29,All Levels,612,209,821,10542,1748,12290,95977
+2022,Districts,New Castle,Brandywine School District,31,All Levels,615,187,802,8564,1621,10185,95977
+2022,Districts,New Castle,Christina School District,33,All Levels,688,415,1103,10339,2814,13153,95977
+2022,Districts,New Castle,Colonial School District,34,All Levels,548,141,689,7550,1814,9364,95977
+2022,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,319,45,364,4110,616,4726,95977
+2022,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,946,241,1187,13621,2541,16162,95977
+2022,Districts,Sussex,Cape Henlopen School District,17,All Levels,323,169,492,5013,951,5964,35609
+2022,Districts,Sussex,Delmar School District,37,All Levels,61,12,73,1309,115,1424,35609
+2022,Districts,Sussex,Indian River School District,36,All Levels,589,211,800,8908,1580,10488,35609
+2022,Districts,Sussex,Laurel School District,16,All Levels,140,39,179,2137,386,2523,35609
+2022,Districts,Sussex,Seaford School District,23,All Levels,173,61,234,2744,488,3232,35609
+2022,Districts,Sussex,Sussex Technical School District,40,All Levels,74,13,87,1176,130,1306,35609
+2022,Districts,Sussex,Woodbridge School District,35,All Levels,130,46,176,2074,388,2462,35609
+2023,Charters,Kent,Academy of Dover Charter School,85,All Levels,29,0,29,341,70,411,32958
+2023,Charters,Kent,Campus Community School,74,All Levels,25,2,27,352,50,402,32958
+2023,Charters,Kent,Early College High School at Del State,9604,All Levels,23,4,27,476,43,519,32958
+2023,Charters,Kent,First State Military Academy,9607,All Levels,22,2,24,349,90,439,32958
+2023,Charters,Kent,Positive Outcomes Charter School,71,All Levels,11,4,15,40,75,115,32958
+2023,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,39,6,45,659,71,730,32958
+2023,Charters,New Castle,ASPIRA Delaware,69,All Levels,74,14,88,1162,179,1341,95566
+2023,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,41,2,43,670,48,718,95566
+2023,Charters,New Castle,Charter School of New Castle,80,All Levels,38,4,42,663,89,752,95566
+2023,Charters,New Castle,East Side Charter School,72,All Levels,33,4,37,409,63,472,95566
+2023,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,33,4,37,586,46,632,95566
+2023,Charters,New Castle,First State Montessori Academy,9606,All Levels,34,0,34,554,75,629,95566
+2023,Charters,New Castle,Freire Charter School Wilmington,9612,All Levels,24,3,27,328,122,450,95566
+2023,Charters,New Castle,Gateway Charter School,92,All Levels,22,2,24,109,77,186,95566
+2023,Charters,New Castle,Great Oaks Charter School,9611,All Levels,12,2,14,153,64,217,95566
+2023,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,46,10,56,551,92,643,95566
+2023,Charters,New Castle,MOT Charter School,88,All Levels,61,10,71,1277,106,1383,95566
+2023,Charters,New Castle,Newark Charter School,89,All Levels,140,35,175,2733,254,2987,95566
+2023,Charters,New Castle,Odyssey Charter School,86,All Levels,141,22,163,1924,199,2123,95566
+2023,Charters,Sussex,Sussex Academy,77,All Levels,58,3,61,1051,67,1118,35782
+2023,Charters,Sussex,Sussex Montessori School,9614,All Levels,17,2,19,357,46,403,35782
+2023,Districts,Kent,Caesar Rodney School District,10,All Levels,450,141,591,6933,1266,8199,32958
+2023,Districts,Kent,Capital School District,13,All Levels,321,125,446,5026,1233,6259,32958
+2023,Districts,Kent,Lake Forest School District,15,All Levels,192,51,243,2925,633,3558,32958
+2023,Districts,Kent,Milford School District,18,All Levels,220,70,290,3749,641,4390,32958
+2023,Districts,Kent,POLYTECH School District,39,All Levels,81,12,93,1054,149,1203,32958
+2023,Districts,Kent,Smyrna School District,24,All Levels,188,200,388,5029,916,5945,32958
+2023,Districts,New Castle,Appoquinimink School District,29,All Levels,644,233,877,10763,1846,12609,95566
+2023,Districts,New Castle,Brandywine School District,31,All Levels,617,191,808,8402,1717,10119,95566
+2023,Districts,New Castle,Christina School District,33,All Levels,716,398,1114,9927,2860,12787,95566
+2023,Districts,New Castle,Colonial School District,34,All Levels,527,127,654,7125,1827,8952,95566
+2023,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,330,46,376,4107,625,4732,95566
+2023,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,944,242,1186,13477,2589,16066,95566
+2023,Districts,Sussex,Cape Henlopen School District,17,All Levels,334,181,515,5197,1001,6198,35782
+2023,Districts,Sussex,Delmar School District,37,All Levels,57,13,70,1310,114,1424,35782
+2023,Districts,Sussex,Indian River School District,36,All Levels,566,228,794,8965,1646,10611,35782
+2023,Districts,Sussex,Laurel School District,16,All Levels,128,41,169,2144,393,2537,35782
+2023,Districts,Sussex,Seaford School District,23,All Levels,167,61,228,2909,510,3419,35782
+2023,Districts,Sussex,Sussex Technical School District,40,All Levels,72,16,88,1131,161,1292,35782
+2023,Districts,Sussex,Woodbridge School District,35,All Levels,140,47,187,2056,402,2458,35782
+2024,Charters,Kent,Academy of Dover Charter School,85,All Levels,26,1,27,331,84,415,32816
+2024,Charters,Kent,Campus Community School,74,All Levels,24,3,27,351,52,403,32816
+2024,Charters,Kent,Early College High School at Del State,9604,All Levels,15,5,20,512,21,533,32816
+2024,Charters,Kent,First State Military Academy,9607,All Levels,23,2,25,339,77,416,32816
+2024,Charters,Kent,Positive Outcomes Charter School,71,All Levels,10,4,14,44,78,122,32816
+2024,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,39,8,47,652,89,741,32816
+2024,Charters,New Castle,ASPIRA Delaware,69,All Levels,81,14,95,1225,219,1444,94761
+2024,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,43,4,47,755,50,805,94761
+2024,Charters,New Castle,Charter School of New Castle,80,All Levels,31,4,35,672,92,764,94761
+2024,Charters,New Castle,East Side Charter School,72,All Levels,30,8,38,380,66,446,94761
+2024,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,33,8,41,541,60,601,94761
+2024,Charters,New Castle,First State Montessori Academy,9606,All Levels,36,0,36,562,81,643,94761
+2024,Charters,New Castle,Freire Charter School Wilmington,9612,All Levels,23,4,27,292,119,411,94761
+2024,Charters,New Castle,Gateway Charter School,92,All Levels,22,2,24,119,72,191,94761
+2024,Charters,New Castle,Great Oaks Charter School,9611,All Levels,7,1,8,91,54,145,94761
+2024,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,43,6,49,508,91,599,94761
+2024,Charters,New Castle,MOT Charter School,88,All Levels,66,11,77,1271,125,1396,94761
+2024,Charters,New Castle,Newark Charter School,89,All Levels,144,39,183,2748,299,3047,94761
+2024,Charters,New Castle,Odyssey Charter School,86,All Levels,156,23,179,1922,270,2192,94761
+2024,Charters,Sussex,Sussex Academy,77,All Levels,53,3,56,1071,87,1158,35944
+2024,Charters,Sussex,Sussex Montessori School,9614,All Levels,19,3,22,392,47,439,35944
+2024,Districts,Kent,Caesar Rodney School District,10,All Levels,428,150,578,6796,1343,8139,32816
+2024,Districts,Kent,Capital School District,13,All Levels,300,104,404,5110,1274,6384,32816
+2024,Districts,Kent,Lake Forest School District,15,All Levels,187,49,236,2972,637,3609,32816
+2024,Districts,Kent,Milford School District,18,All Levels,221,67,288,3834,682,4516,32816
+2024,Districts,Kent,POLYTECH School District,39,All Levels,78,12,90,1064,161,1225,32816
+2024,Districts,Kent,Smyrna School District,24,All Levels,191,192,383,4971,911,5882,32816
+2024,Districts,New Castle,Appoquinimink School District,29,All Levels,628,239,867,10809,1904,12713,94761
+2024,Districts,New Castle,Brandywine School District,31,All Levels,624,196,820,8238,1840,10078,94761
+2024,Districts,New Castle,Christina School District,33,All Levels,732,373,1105,9810,2985,12795,94761
+2024,Districts,New Castle,Colonial School District,34,All Levels,408,210,618,6755,1823,8578,94761
+2024,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,329,47,376,4183,641,4824,94761
+2024,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,937,242,1179,13151,2644,15795,94761
+2024,Districts,Sussex,Cape Henlopen School District,17,All Levels,348,197,545,5346,1094,6440,35944
+2024,Districts,Sussex,Delmar School District,37,All Levels,62,12,74,1319,127,1446,35944
+2024,Districts,Sussex,Indian River School District,36,All Levels,549,267,816,8832,1743,10575,35944
+2024,Districts,Sussex,Laurel School District,16,All Levels,118,39,157,2072,395,2467,35944
+2024,Districts,Sussex,Seaford School District,23,All Levels,167,54,221,2905,530,3435,35944
+2024,Districts,Sussex,Sussex Technical School District,40,All Levels,70,19,89,1155,168,1323,35944
+2024,Districts,Sussex,Woodbridge School District,35,All Levels,135,59,194,2038,428,2466,35944
+2025,Charters,Kent,Academy of Dover Charter School,85,All Levels,27,2,29,361,82,443,32616
+2025,Charters,Kent,Campus Community School,74,All Levels,17,3,20,350,59,409,32616
+2025,Charters,Kent,Early College High School at Del State,9604,All Levels,18,6,24,538,45,583,32616
+2025,Charters,Kent,First State Military Academy,9607,All Levels,22,2,24,360,73,433,32616
+2025,Charters,Kent,Positive Outcomes Charter School,71,All Levels,9,4,13,51,68,119,32616
+2025,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,39,10,49,658,111,769,32616
+2025,Charters,New Castle,ASPIRA Delaware,69,All Levels,69,12,81,1227,244,1471,93949
+2025,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,44,4,48,854,56,910,93949
+2025,Charters,New Castle,Charter School of New Castle,80,All Levels,31,3,34,741,47,788,93949
+2025,Charters,New Castle,East Side Charter School,72,All Levels,30,7,37,352,82,434,93949
+2025,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,30,6,36,478,79,557,93949
+2025,Charters,New Castle,First State Montessori Academy,9606,All Levels,34,0,34,566,91,657,93949
+2025,Charters,New Castle,Freire Charter School Wilmington,9612,All Levels,15,2,17,285,121,406,93949
+2025,Charters,New Castle,Gateway Charter School,92,All Levels,21,2,23,124,87,211,93949
+2025,Charters,New Castle,Great Oaks Charter School,9611,All Levels,7,1,8,97,52,149,93949
+2025,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,36,7,43,494,100,594,93949
+2025,Charters,New Castle,MOT Charter School,88,All Levels,69,11,80,1285,122,1407,93949
+2025,Charters,New Castle,Newark Charter School,89,All Levels,149,41,190,2778,331,3109,93949
+2025,Charters,New Castle,Odyssey Charter School,86,All Levels,156,26,182,1967,319,2286,93949
+2025,Charters,Sussex,Bryan Allen Stevenson School of Excellence,9615,All Levels,5,0,5,164,44,208,35914
+2025,Charters,Sussex,Sussex Academy,77,All Levels,55,3,58,1086,96,1182,35914
+2025,Charters,Sussex,Sussex Montessori School,9614,All Levels,13,3,16,347,36,383,35914
+2025,Districts,Kent,Caesar Rodney School District,10,All Levels,412,138,550,6824,1401,8225,32616
+2025,Districts,Kent,Capital School District,13,All Levels,276,88,364,5057,1261,6318,32616
+2025,Districts,Kent,Lake Forest School District,15,All Levels,177,50,227,2971,673,3644,32616
+2025,Districts,Kent,Milford School District,18,All Levels,214,57,271,3787,657,4444,32616
+2025,Districts,Kent,POLYTECH School District,39,All Levels,69,10,79,1078,150,1228,32616
+2025,Districts,Kent,Smyrna School District,24,All Levels,184,184,368,4823,944,5767,32616
+2025,Districts,New Castle,Appoquinimink School District,29,All Levels,646,253,899,10744,1920,12664,93949
+2025,Districts,New Castle,Brandywine School District,31,All Levels,590,202,792,8127,1905,10032,93949
+2025,Districts,New Castle,Christina School District,33,All Levels,721,356,1077,9614,3049,12663,93949
+2025,Districts,New Castle,Colonial School District,34,All Levels,387,212,599,6441,1906,8347,93949
+2025,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,329,44,373,4219,634,4853,93949
+2025,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,925,218,1143,12968,2665,15633,93949
+2025,Districts,Sussex,Cape Henlopen School District,17,All Levels,353,194,547,5404,1101,6505,35914
+2025,Districts,Sussex,Delmar School District,37,All Levels,63,13,76,1303,134,1437,35914
+2025,Districts,Sussex,Indian River School District,36,All Levels,518,276,794,8691,1828,10519,35914
+2025,Districts,Sussex,Laurel School District,16,All Levels,116,38,154,2067,419,2486,35914
+2025,Districts,Sussex,Seaford School District,23,All Levels,158,46,204,3053,545,3598,35914
+2025,Districts,Sussex,Sussex Technical School District,40,All Levels,69,18,87,1165,176,1341,35914
+2025,Districts,Sussex,Woodbridge School District,35,All Levels,129,61,190,2055,470,2525,35914
+2026,Charters,Kent,Academy of Dover Charter School,85,All Levels,22,5,27,364,90,454,32460
+2026,Charters,Kent,Campus Community School,74,All Levels,21,5,26,348,54,402,32460
+2026,Charters,Kent,Early College High School at Del State,9604,All Levels,19,3,22,536,61,597,32460
+2026,Charters,Kent,First State Military Academy,9607,All Levels,23,2,25,339,85,424,32460
+2026,Charters,Kent,Positive Outcomes Charter School,71,All Levels,9,4,13,50,67,117,32460
+2026,Charters,Kent,Providence Creek Academy Charter School,87,All Levels,43,11,54,674,112,786,32460
+2026,Charters,New Castle,ASPIRA Delaware,69,All Levels,77,17,94,1198,277,1475,93111
+2026,Charters,New Castle,Academia Antonia Alonso,9605,All Levels,44,6,50,849,74,923,93111
+2026,Charters,New Castle,Charter School of New Castle,80,All Levels,37,4,41,679,80,759,93111
+2026,Charters,New Castle,East Side Charter School,72,All Levels,31,8,39,372,88,460,93111
+2026,Charters,New Castle,Edison (Thomas A.) Charter School,76,All Levels,27,6,33,453,85,538,93111
+2026,Charters,New Castle,First State Montessori Academy,9606,All Levels,41,0,41,558,90,648,93111
+2026,Charters,New Castle,Freire Charter School Wilmington,9612,All Levels,19,5,24,257,113,370,93111
+2026,Charters,New Castle,Gateway Charter School,92,All Levels,22,1,23,125,86,211,93111
+2026,Charters,New Castle,Great Oaks Charter School,9611,All Levels,6,1,7,103,38,141,93111
+2026,Charters,New Castle,Kuumba Academy Charter School,82,All Levels,34,6,40,465,91,556,93111
+2026,Charters,New Castle,MOT Charter School,88,All Levels,70,15,85,1259,131,1390,93111
+2026,Charters,New Castle,Newark Charter School,89,All Levels,154,49,203,2826,330,3156,93111
+2026,Charters,New Castle,Odyssey Charter School,86,All Levels,177,29,206,2069,333,2402,93111
+2026,Charters,Sussex,Bryan Allen Stevenson School of Excellence,9615,All Levels,6,0,6,84,39,123,35639
+2026,Charters,Sussex,Sussex Academy,77,All Levels,57,7,64,1087,103,1190,35639
+2026,Charters,Sussex,Sussex Montessori School,9614,All Levels,16,4,20,351,41,392,35639
+2026,Districts,Kent,Caesar Rodney School District,10,All Levels,440,146,586,6807,1420,8227,32460
+2026,Districts,Kent,Capital School District,13,All Levels,316,103,419,4981,1230,6211,32460
+2026,Districts,Kent,Lake Forest School District,15,All Levels,193,63,256,3003,676,3679,32460
+2026,Districts,Kent,Milford School District,18,All Levels,239,57,296,3767,675,4442,32460
+2026,Districts,Kent,POLYTECH School District,39,All Levels,76,13,89,1084,168,1252,32460
+2026,Districts,Kent,Smyrna School District,24,All Levels,191,195,386,4646,942,5588,32460
+2026,Districts,New Castle,Appoquinimink School District,29,All Levels,638,265,903,10808,1915,12723,93111
+2026,Districts,New Castle,Brandywine School District,31,All Levels,613,204,817,7885,1905,9790,93111
+2026,Districts,New Castle,Christina School District,33,All Levels,751,360,1111,9234,3022,12256,93111
+2026,Districts,New Castle,Colonial School District,34,All Levels,377,245,622,6115,1924,8039,93111
+2026,Districts,New Castle,New Castle County Vocational-Technical School District,38,All Levels,332,51,383,4307,631,4938,93111
+2026,Districts,New Castle,Red Clay Consolidated School District,32,All Levels,911,260,1171,12646,2866,15512,93111
+2026,Districts,Sussex,Cape Henlopen School District,17,All Levels,375,213,588,5458,1117,6575,35639
+2026,Districts,Sussex,Delmar School District,37,All Levels,66,15,81,1325,136,1461,35639
+2026,Districts,Sussex,Indian River School District,36,All Levels,493,282,775,8630,1815,10445,35639
+2026,Districts,Sussex,Laurel School District,16,All Levels,128,43,171,2065,386,2451,35639
+2026,Districts,Sussex,Seaford School District,23,All Levels,165,55,220,3042,515,3557,35639
+2026,Districts,Sussex,Sussex Technical School District,40,All Levels,76,20,96,1170,179,1349,35639
+2026,Districts,Sussex,Woodbridge School District,35,All Levels,132,60,192,2045,512,2557,35639
+2027,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32470
+2027,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92815
+2027,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,35612
+2028,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32465
+2028,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92491
+2028,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,35374
+2029,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32498
+2029,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92456
+2029,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,35128
+2030,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32688
+2030,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92669
+2030,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,34923
+2031,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32629
+2031,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92446
+2031,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,35007
+2032,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32621
+2032,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92540
+2032,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,35087
+2033,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32688
+2033,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92606
+2033,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,35292
+2034,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32733
+2034,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92616
+2034,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,35452
+2035,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32717
+2035,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92336
+2035,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,35658
+2036,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32715
+2036,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92262
+2036,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,35944
+2037,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32806
+2037,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92149
+2037,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,36286
+2038,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,32904
+2038,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92254
+2038,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,36683
+2039,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33150
+2039,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92502
+2039,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,37112
+2040,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33304
+2040,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92687
+2040,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,37742
+2041,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33320
+2041,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,92266
+2041,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,38125
+2042,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33331
+2042,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,91814
+2042,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,38700
+2043,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33350
+2043,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,91362
+2043,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,39262
+2044,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33310
+2044,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,90934
+2044,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,39285
+2045,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33344
+2045,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,90543
+2045,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,39270
+2046,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33325
+2046,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,90176
+2046,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,39208
+2047,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33319
+2047,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,89818
+2047,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,39093
+2048,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33309
+2048,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,89466
+2048,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,38929
+2049,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33311
+2049,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,89129
+2049,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,38716
+2050,NA,Kent,NA,NA,NA,NA,NA,NA,NA,NA,NA,33301
+2050,NA,New Castle,NA,NA,NA,NA,NA,NA,NA,NA,NA,88792
+2050,NA,Sussex,NA,NA,NA,NA,NA,NA,NA,NA,NA,38434
