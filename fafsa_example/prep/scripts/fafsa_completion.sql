@@ -1,64 +1,32 @@
-/*
-    FAFSA completion for high school seniors
-
-    What this query does, in normal-human language:
-    1) Find the latest enrollment snapshot for each school in each year.
-    2) Grab current 12th graders from that snapshot.
-    3) Pick one latest ISIR row per student/year.
-    4) Join the two and say whether the student completed a FAFSA.
-
-    Changes I made from Ches's source query:
-      1) Latest enrollment snapshot is by SchoolYear + SchoolCode
-      3) ISIR ties get one winner via ROW_NUMBER(), with ISIRID DESC as the tie-breaker
-      4) Final DISTINCT is removed
-
-    Intentionally left alone:
-      - FAFSA matching still uses raw first name + last name + DOB
-      - @SchoolName filtering still happens in the final query
-      - Final ORDER BY is still here because apparently we enjoy readable output
+/* Pull student-level FAFSA completion data for Delaware high schools
+   Final grain: one row per SchoolYear + StudentID + SchoolCode
+   FAFSA selection rule: most recent ApplicationReceiptDate
 */
 
-SET NOCOUNT ON;  -- Stops narrating every row count.
+DECLARE @SchoolYear int = NULL;              -- NULL = all years
+DECLARE @SchoolName nvarchar(200) = NULL;    -- NULL = all schools
 
-DECLARE @SchoolYear  int           = NULL;  -- NULL = all years; set a year like 2026 if you want to be specific.
-DECLARE @SchoolName  nvarchar(200) = NULL;  -- NULL = all schools; set one school name if you're feeling selective.
-DECLARE @RunDate     date          = CAST(SYSDATETIME() AS date);  -- One run date for the whole query just in case you forgot what today is.
+/* Drop temp tables so the query can be run more than once safely */
+IF OBJECT_ID('tempdb..#asofdate')       IS NOT NULL DROP TABLE #asofdate;
+IF OBJECT_ID('tempdb..#twelve_raw')     IS NOT NULL DROP TABLE #twelve_raw;
+IF OBJECT_ID('tempdb..#twelve')         IS NOT NULL DROP TABLE #twelve;
+IF OBJECT_ID('tempdb..#latest_isir')    IS NOT NULL DROP TABLE #latest_isir;
 
-/*
-    Temp table cleanup.
-    Translation: if you run this twice, we don't want tempdb dragging old stuff into the query.
-*/
-IF OBJECT_ID('tempdb..#latest_isir') IS NOT NULL DROP TABLE #latest_isir;
-IF OBJECT_ID('tempdb..#asofdate')    IS NOT NULL DROP TABLE #asofdate;
-IF OBJECT_ID('tempdb..#twelve')      IS NOT NULL DROP TABLE #twelve;
 
-/*
-    1) Get the latest enrollment snapshot for each school in each year.
-*/
+/* 1) Latest enrollment snapshot date by school year */
 SELECT
-    pit.SchoolYear,
-    pit.SchoolCode,
-    MAX(pit.AsOf) AS maxasof
+    SchoolYear,
+    MAX(AsOf) AS maxasof
 INTO #asofdate
-FROM [PUBLICREPORTMART].[details].[P20_STUDENT_ENROLLMENT_POINT_IN_TIME] AS pit
-WHERE (@SchoolYear IS NULL OR pit.SchoolYear = @SchoolYear)
-GROUP BY
-    pit.SchoolYear,
-    pit.SchoolCode
-OPTION (RECOMPILE);
+FROM [PUBLICREPORTMART].[details].[P20_STUDENT_ENROLLMENT_POINT_IN_TIME]
+WHERE (@SchoolYear IS NULL OR SchoolYear = @SchoolYear)
+GROUP BY SchoolYear;
 
-/*
-    Clustered index because this table is tiny-ish and we join on these exact columns.
-*/
-CREATE CLUSTERED INDEX CIX_asofdate
-    ON #asofdate (SchoolYear, SchoolCode, maxasof);
+CREATE INDEX IX_asofdate
+    ON #asofdate (SchoolYear, maxasof);
 
-/*
-    2) Pull current grade 12 enrollment from the latest snapshot.
 
-    This is the senior list.
-    We join to school and district reference tables so the final output is not just a pile of codes.
-*/
+/* 2) Pull current grade 12 enrollment snapshot */
 SELECT
     pit.SchoolYear,
     pit.LastName,
@@ -69,50 +37,103 @@ SELECT
     pit.SchoolCode,
     dt.DistrictName,
     pit.DistrictCode,
+    pit.Geography,
+    pit.ZipCode,
+    pit.Gender,
+    pit.RaceEDEN AS RaceReportCode,   -- stored value is actually the race report code
     pit.LowIncome,
-    pit.SWD
-INTO #twelve
+    pit.Medicaid,
+    pit.SPEDCode,
+    pit.CD504,
+    pit.ELL,
+    pit.Migrant,
+    pit.Homeless,
+    pit.FosterCare,
+    pit.MilitaryDep,
+    pit.Immersion,
+    pit.Grade,
+    pit.YearInHS,
+    pit.GradeRepeater,
+    pit.GradeSkipper
+INTO #twelve_raw
 FROM [PUBLICREPORTMART].[details].[P20_STUDENT_ENROLLMENT_POINT_IN_TIME] AS pit
-INNER JOIN CodeLibrary.dbo.School AS sc
-    ON sc.SchoolCode = pit.SchoolCode
-   AND sc.SchoolYear = pit.SchoolYear
-INNER JOIN CodeLibrary.dbo.District AS dt
-    ON dt.DistrictCode = pit.DistrictCode
-   AND dt.SchoolYear = pit.SchoolYear
-INNER JOIN #asofdate AS ad
+JOIN CodeLibrary.dbo.School AS sc
+    ON pit.SchoolCode = sc.SchoolCode
+   AND pit.SchoolYear = sc.SchoolYear
+JOIN CodeLibrary.dbo.District AS dt
+    ON pit.DistrictCode = dt.DistrictCode
+   AND pit.SchoolYear = dt.SchoolYear
+JOIN #asofdate AS ad
     ON ad.SchoolYear = pit.SchoolYear
-   AND ad.SchoolCode = pit.SchoolCode
    AND pit.AsOf = ad.maxasof
 WHERE (@SchoolYear IS NULL OR pit.SchoolYear = @SchoolYear)
   AND pit.Grade = '12'
-  AND pit.SchoolCode NOT IN (516,530,650,545,655,750,689,522,630,538,108,537,514,540,977,728)
-OPTION (RECOMPILE);
+  AND pit.SchoolCode NOT IN (516,530,650,545,655,750,689,522,630,538,108,537,514,540,977,728);
 
-/*
-    Supporting index for the final FAFSA match.
-    We join on SchoolYear + raw name + DOB, so that is what gets indexed. Not the best but it's what we've got...
-*/
-CREATE INDEX IX_twelve_match
-    ON #twelve (SchoolYear, LastName, FirstName, BirthDate);
+CREATE INDEX IX_twelve_raw
+    ON #twelve_raw (SchoolYear, StudentID, SchoolCode);
 
-/*
-    3) Pick one latest ISIR row per student/year.
 
-    Students can have multiple ISIR transactions.
-    We rank rows newest-to-oldest by TransactionReceiptDate.
-    If there is a tie on that date, the higher ISIRID wins.
-*/
-;WITH isir_ranked AS (
+/* 3) Enforce one row per SchoolYear + StudentID + SchoolCode */
+WITH ranked_twelve AS (
+    SELECT
+        *,
+        ROW_NUMBER() OVER (
+            PARTITION BY SchoolYear, StudentID, SchoolCode
+            ORDER BY
+                LastName,
+                FirstName,
+                BirthDate
+        ) AS rn
+    FROM #twelve_raw
+)
+SELECT
+    SchoolYear,
+    LastName,
+    FirstName,
+    BirthDate,
+    StudentID,
+    SchoolName,
+    SchoolCode,
+    DistrictName,
+    DistrictCode,
+    Geography,
+    ZipCode,
+    Gender,
+    RaceReportCode,
+    LowIncome,
+    Medicaid,
+    SPEDCode,
+    CD504,
+    ELL,
+    Migrant,
+    Homeless,
+    FosterCare,
+    MilitaryDep,
+    Immersion,
+    Grade,
+    YearInHS,
+    GradeRepeater,
+    GradeSkipper
+INTO #twelve
+FROM ranked_twelve
+WHERE rn = 1;
+
+CREATE INDEX IX_twelve
+    ON #twelve (SchoolYear, StudentID, SchoolCode, LastName, FirstName, BirthDate);
+
+
+/* 4) Keep one ISIR row per student/year based on most recent ApplicationReceiptDate
+      Tie-breakers are TransactionReceiptDate and ISIRID */
+WITH ranked_isir AS (
     SELECT
         i.ISIRYear,
+        i.ISIRID,
         i.StudentFirstName,
         i.StudentLastName,
         i.StudentDateOfBirth,
-        i.RejectReasonCodes,
-        i.StudentEmailAddress,
         i.ApplicationReceiptDate,
         i.TransactionReceiptDate,
-        i.ISIRID,
         ROW_NUMBER() OVER (
             PARTITION BY
                 i.ISIRYear,
@@ -120,6 +141,8 @@ CREATE INDEX IX_twelve_match
                 i.StudentLastName,
                 i.StudentDateOfBirth
             ORDER BY
+                CASE WHEN i.ApplicationReceiptDate IS NULL THEN 1 ELSE 0 END,
+                i.ApplicationReceiptDate DESC,
                 i.TransactionReceiptDate DESC,
                 i.ISIRID DESC
         ) AS rn
@@ -131,59 +154,64 @@ SELECT
     StudentFirstName,
     StudentLastName,
     StudentDateOfBirth,
-    RejectReasonCodes,
-    StudentEmailAddress,
     ApplicationReceiptDate
 INTO #latest_isir
-FROM isir_ranked
-WHERE rn = 1
-OPTION (RECOMPILE);
+FROM ranked_isir
+WHERE rn = 1;
 
-CREATE INDEX IX_latest_isir_match
+CREATE INDEX IX_latest_isir
     ON #latest_isir (ISIRYear, StudentLastName, StudentFirstName, StudentDateOfBirth);
 
-/*
-    4) Final join.
 
-    Left join is important here:
-    every senior should stay in the output even if we do not find a matching ISIR row.
-    CompletedFAFSA = Y when ApplicationReceiptDate exists, else N.
-*/
+/* 5) Final output
+      One row per SchoolYear + StudentID + SchoolCode
+      No DISTINCT needed */
 SELECT
-    @RunDate AS AsOf,
+    [asOf] = CAST(GETDATE() AS date),
     t.SchoolYear,
     t.StudentID,
-    t.LastName,
-    t.FirstName,
     t.BirthDate,
     t.SchoolName,
     t.SchoolCode,
     t.DistrictName,
     t.DistrictCode,
-    i.RejectReasonCodes,
+    t.Geography,
+    t.ZipCode,
+    t.Gender,
+    COALESCE(d.RaceReportTitle, CAST(t.RaceReportCode AS varchar(50))) AS RaceReportTitle,
+    t.LowIncome,
+    t.Medicaid,
+    t.SPEDCode,
+    se.SpEdDefinition,
+    t.CD504,
+    t.ELL,
+    t.Migrant,
+    t.Homeless,
+    t.FosterCare,
+    t.MilitaryDep,
+    t.Immersion,
+    t.Grade,
+    t.YearInHS,
+    t.GradeRepeater,
+    t.GradeSkipper,
     i.ApplicationReceiptDate,
-    i.StudentEmailAddress,
     CASE
         WHEN i.ApplicationReceiptDate IS NOT NULL THEN 'Y'
         ELSE 'N'
     END AS CompletedFAFSA
 FROM #twelve AS t
 LEFT JOIN #latest_isir AS i
-    ON i.ISIRYear = t.SchoolYear
-   AND i.StudentLastName = t.LastName
-   AND i.StudentFirstName = t.FirstName
-   AND i.StudentDateOfBirth = t.BirthDate
+    ON  i.ISIRYear = t.SchoolYear
+    AND i.StudentLastName = t.LastName
+    AND i.StudentFirstName = t.FirstName
+    AND i.StudentDateOfBirth = t.BirthDate
+LEFT JOIN CodeLibrary.dbo.RaceReportCodeEDEN AS d
+    ON CAST(t.RaceReportCode AS varchar(50)) = CAST(d.RaceReportCode AS varchar(50))
+LEFT JOIN CodeLibrary.dbo.SpEdCode AS se
+    ON t.SPEDCode = se.SpEd
 WHERE (@SchoolName IS NULL OR t.SchoolName = @SchoolName)
 ORDER BY
     t.SchoolYear DESC,
     t.DistrictName,
     t.SchoolName,
-    t.LastName,
-    t.FirstName;
-
-/*
-    Tiny caveat for future-you:
-    matching on raw first/last name + DOB is the best available key in this query,
-    but it is still a little janky in the way all name matching is a little janky (it's what was passed down to me).
-    If you ever get a stronger crosswalk key, use it and never look back.
-*/
+    t.StudentID;
