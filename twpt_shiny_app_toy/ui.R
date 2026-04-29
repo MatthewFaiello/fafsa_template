@@ -1,7 +1,7 @@
-# ==== STEP 3: ui.R ====
+# ==== STEP 4: ui.R ====
 # This file controls what people see.
 #
-# This is the third step in the full app flow:
+# This is the last step in the full app flow:
 # - display the sidebar controls
 # - display the output placeholders
 # - arrange the app into a sidebar + tabbed main panel layout

@@ -1,4 +1,4 @@
-# ==== STEP 4: server.R ====
+# ==== STEP 3: server.R ====
 # This file is the reactive wiring for the app.
 #
 # This is where the app connects:

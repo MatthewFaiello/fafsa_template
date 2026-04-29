@@ -9,3 +9,4 @@
 
 !twpt_shiny_app_toy/**/*.RDS
 !twpt_shiny_app_toy/**/*.csv
+.positai
