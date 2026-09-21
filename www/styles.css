@@ -1,0 +1,347 @@
+/* ==== TEMPLATE OVERVIEW ======================================================
+   This file controls the app's visual presentation.
+
+   The structure mirrors ui.R:
+   - page and header
+   - filters
+   - chart card
+   - explanatory note
+
+   Keep visual changes here so the analysis code stays focused on the data.
+============================================================================= */
+
+
+/* ==== THEME VARIABLES (EDIT HERE) ========================================== */
+/* >>> EDIT HERE >>>
+   This is the fastest place to change the app's overall look.
+*/
+:root {
+  --dde-blue: #194a78;
+  --dde-blue-dark: #153b60;
+  --dde-orange: #d98b00;
+  --dde-muted: #5b6875;
+  --dde-border: #d8e2ec;
+  --dde-border-soft: #e4eaf0;
+  --dde-surface: #ffffff;
+  --dde-bg: #f6f8fb;
+  --dde-bg-soft: #f8fafc;
+  --dde-shadow: 0 4px 14px rgba(25, 74, 120, 0.06);
+  --dde-radius: 12px;
+  --dde-radius-sm: 9px;
+}
+/* <<< END EDIT <<< */
+
+
+/* ==== PAGE AND HEADER ======================================================= */
+
+html,
+body {
+  background: var(--dde-bg);
+}
+
+.app-shell {
+  width: min(1240px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1rem 0 1.5rem;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-height: 46px;
+}
+
+.brand-logo {
+  display: block;
+  width: auto;
+  max-width: 190px;
+  max-height: 48px;
+  object-fit: contain;
+}
+
+.header-copy {
+  min-width: 0;
+}
+
+.app-title {
+  margin: 0;
+  color: var(--dde-blue);
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.app-intro {
+  margin: 0.18rem 0 0;
+  color: var(--dde-muted);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+
+/* ==== CARDS ================================================================ */
+
+.card {
+  overflow: hidden;
+  border: 1px solid var(--dde-border-soft);
+  border-radius: var(--dde-radius);
+  box-shadow: var(--dde-shadow);
+}
+
+.card + .card {
+  margin-top: 0.7rem;
+}
+
+.card-header {
+  padding: 0.78rem 0.95rem 0.7rem;
+  border-bottom: 1px solid var(--dde-border-soft);
+  background: var(--dde-surface);
+}
+
+.card-body {
+  padding: 0.85rem 0.95rem;
+}
+
+
+/* ==== FILTERS =============================================================== */
+
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: end;
+  margin: 0.9rem 0 1rem;
+}
+
+.filter-row .shiny-input-container {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.filter-row .form-label,
+.filter-row .control-label {
+  margin-bottom: 0.22rem;
+  color: var(--dde-blue);
+  font-size: 0.91rem;
+  font-weight: 600;
+}
+
+.selectize-control .selectize-input,
+.form-control,
+.form-select {
+  min-height: 39px;
+  padding: 0.34rem 0.62rem;
+  border: 1px solid var(--dde-border);
+  border-radius: var(--dde-radius-sm);
+  background: var(--dde-surface);
+  box-shadow: none;
+}
+
+.selectize-control .selectize-input.focus,
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--dde-blue);
+  box-shadow: 0 0 0 0.15rem rgba(25, 74, 120, 0.09);
+}
+
+.selectize-dropdown {
+  overflow: hidden;
+  border: 1px solid var(--dde-border);
+  border-radius: var(--dde-radius-sm);
+  background: var(--dde-surface);
+  box-shadow: var(--dde-shadow);
+}
+
+.selectize-dropdown .active {
+  background: rgba(25, 74, 120, 0.08);
+  color: var(--dde-blue-dark);
+}
+
+
+/* ==== CHART CARD ============================================================ */
+
+/* Keep the title and subtitle stacked so the chart header reads cleanly. */
+.plot-card .card-header {
+  display: block;
+}
+
+.chart-title {
+  margin: 0;
+  color: var(--dde-blue-dark);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.chart-subtitle {
+  margin: 0.12rem 0 0;
+  color: var(--dde-muted);
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.plot-card .card-body {
+  padding: 0;
+}
+
+/* The chart body provides the soft-gray frame. The legend sits directly on
+   this surface, while .plot-panel below creates the rounded white chart area. */
+.plot-card .chart-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.45rem 0.8rem 0.85rem;
+  background: var(--dde-bg);
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.38rem 0.65rem;
+  border: 1px solid var(--dde-border);
+  border-radius: 6px;
+  background: var(--dde-surface);
+  color: var(--dde-blue-dark);
+  font-size: 0.88rem;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+}
+
+.legend-school { background: var(--dde-orange); }
+.legend-lea { background: var(--dde-blue); }
+.legend-state { background: var(--dde-muted); }
+
+/* CSS can round this wrapper even though ggplot's panel.background itself
+   cannot have rounded corners. overflow:hidden clips the rendered plot to the
+   same soft radius used elsewhere in the app. */
+.plot-panel {
+  margin-top: 0;
+  overflow: hidden;
+  border-radius: var(--dde-radius-sm);
+  background: var(--dde-surface);
+}
+
+.plot-panel #main_plot,
+.plot-panel #main_plot img {
+  display: block;
+  width: 100%;
+}
+
+/* >>> EDIT HERE >>>
+   Change this height if the chart feels too tall or too compressed.
+*/
+#main_plot {
+  height: 620px !important;
+}
+/* <<< END EDIT <<< */
+
+/* Empty state: keep the same rounded white surface as the chart, but use a
+   much shorter panel so "no data yet" does not look like a missing chart. */
+.empty-state-panel {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  border-radius: var(--dde-radius-sm);
+  background: var(--dde-surface);
+  text-align: center;
+}
+
+.empty-state-panel h4 {
+  margin: 0 0 0.2rem;
+  color: var(--dde-blue-dark);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.empty-state-panel p {
+  margin: 0;
+  color: var(--dde-muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+
+/* ==== EXPLANATORY NOTE ====================================================== */
+
+.reading-note-card .card-body {
+  padding: 0.62rem 0.85rem;
+  gap: 0.25rem;
+  background: var(--dde-surface);
+}
+
+.reading-note-card h4 {
+  margin: 0;
+  color: var(--dde-blue);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.reading-note-card p {
+  margin: 0;
+  color: var(--dde-muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+
+/* ==== RESPONSIVE ADJUSTMENTS ============================================== */
+
+@media (max-width: 768px) {
+  .app-shell {
+    width: min(100% - 1rem, 1240px);
+    padding-top: 0.65rem;
+  }
+
+  .app-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .brand-logo {
+    max-width: 165px;
+  }
+
+  .filter-row {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  #main_plot {
+    height: 540px !important;
+  }
+}
+
+@media (max-height: 760px) and (min-width: 769px) {
+  #main_plot {
+    height: 560px !important;
+  }
+}

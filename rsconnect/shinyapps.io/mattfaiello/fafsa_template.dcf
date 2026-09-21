@@ -1,0 +1,13 @@
+name: fafsa_template
+title: fafsa_template
+username: mattfaiello
+account: mattfaiello
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17600569
+bundleId: 12580699
+url: https://mattfaiello.shinyapps.io/fafsa_template/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.md|prep
