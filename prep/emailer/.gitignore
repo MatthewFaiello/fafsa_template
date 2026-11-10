@@ -1,0 +1,4 @@
+# Keep private staff contacts and refresh archives out of GitLab and deployment.
+/private/
+/snapshots/
+/output/

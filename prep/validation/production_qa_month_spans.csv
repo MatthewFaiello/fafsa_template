@@ -11,4 +11,4 @@ SchoolYear,first_receipt_month,last_receipt_month,observed_receipt_months
 2024,2024-01-01,2024-08-01,8
 2025,2024-10-01,2025-07-01,10
 2026,2025-08-01,2026-05-01,10
-2027,,,0
+2027,2026-08-01,2026-10-01,3
