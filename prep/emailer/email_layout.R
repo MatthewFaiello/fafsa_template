@@ -168,7 +168,7 @@ build_email_body <- function(lea_name,
     "font-family:Arial,sans-serif;color:#333333;'>",
     "<strong>Thank you</strong> for your continued support in helping students ",
     "complete the FAFSA. Your efforts are crucial to ensuring students have ",
-    "access to financial aid and higher education opportunities.",
+    "access to financial aid and postsecondary opportunities.",
     "</p>",
     
     "<p style='margin:0 0 14px;font-size:14px;line-height:20px;",

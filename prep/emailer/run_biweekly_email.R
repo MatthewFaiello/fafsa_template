@@ -6,7 +6,7 @@
 #
 # Read the workflow in this order:
 #   dashboard CSV -> school rates -> earlier refresh -> reviewed recipients
-#                 -> email HTML -> preview / test / send
+#                 -> email HTML -> preview / test / batch_test / send
 #
 # The dashboard and emailer share ONE input_data/fafsa_completion.csv.
 # Refresh that file with fafsa_completion.sql and run production QA first.
@@ -17,6 +17,7 @@
 #
 # MODE = "preview": write files, send nothing (default).
 # MODE = "test":    send ONE example to TEST_EMAIL only.
+# MODE = "batch_test": send one randomly assigned school to each test address.
 # MODE = "send":    send the reviewed roster after explicit approval.
 # Run from the directory containing fafsa_template.Rproj.
 # =============================================================================
@@ -47,16 +48,22 @@ EMAIL_SUBJECT <- "Biweekly FAFSA Completion Updates"
 
 # Mode is a simple control variable used by the if/else block at the end.
 # Keep this as "preview" while developing, refreshing, or checking recipients.
-MODE <- "preview"              # "preview", "test", or "send"
-TEST_EMAIL <- ""                # Set your own email address in test mode
+MODE <- "batch_test"              # "preview", "test", "batch_test", or "send"
+TEST_EMAIL <- "aQuena.Williams@doe.k12.de.us"  # Your own email address in test mode
+
+# Batch testers live in a PRIVATE CSV with one column named Email.
+# Do not put real recipient addresses in this script or commit the private CSV.
+BATCH_TEST_CSV <- "prep/emailer/private/batch_test_emails.csv"
+BATCH_TEST_SEED <- 20261113   # Reproducible random school assignments
+BATCH_TEST_MAX <- 20L        # Safety limit for the number of test emails
 PREVIEW_SCHOOL <- "Appoquinimink High School"
-ALWAYS_CC <- ""                 # Optional; leave empty unless approved
+ALWAYS_CC <- "aQuena.Williams@doe.k12.de.us" # Optional; leave empty unless approved
 SEND_APPROVED <- FALSE          # Must explicitly change to TRUE for live sending
 
 # ==== 2. READ AND VALIDATE THE SHARED APP DATA ================================
 # stop()/stopifnot() halt execution if required inputs are missing or invalid.
 # Fail BEFORE creating or sending school-specific messages.
-stopifnot(MODE %in% c("preview", "test", "send"))
+stopifnot(MODE %in% c("preview", "test", "batch_test", "send"))
 if (!startsWith(DASHBOARD_URL, "https://")) {
   stop("DASHBOARD_URL must be the live HTTPS dashboard link.")
 }
@@ -245,6 +252,41 @@ roster <- readxl::read_excel(ROSTER_XLSX) %>%
   distinct(SchoolName, EmailKey, .keep_all = TRUE) %>%
   select(-EmailKey)
 
+# Some mixed-grade charters have elementary/middle-school staff on the same
+# school-level roster as their high-school staff. Remove only those roles for
+# the four reviewed schools below. Keep grade-level titles at other schools:
+# a middle-school counselor at a 6-12 school is not automatically ineligible.
+# New charters should be reviewed before being added to this explicit list.
+mixed_grade_charters <- c(
+  "ASPIRA Academy",
+  "MOT Charter School",
+  "Odyssey Charter School",
+  "Sussex Academy"
+)
+
+# Save exclusions for review, then remove them from the ACTUAL sending roster.
+# Missing position titles stay in the roster rather than being guessed about.
+roster <- roster %>%
+  mutate(
+    excluded_grade_level = SchoolName %in% mixed_grade_charters &
+      str_detect(coalesce(PositionName, ""),
+                 regex("\\b(elementary|middle)\\b", ignore_case = TRUE))
+  )
+
+excluded_contacts <- roster %>%
+  filter(excluded_grade_level) %>%
+  select(-excluded_grade_level)
+readr::write_csv(
+  excluded_contacts %>% arrange(SchoolName, LastName, FirstName),
+  file.path(OUTPUT_DIR, "excluded_grade_level_contacts.csv")
+)
+
+roster <- roster %>%
+  filter(!excluded_grade_level) %>%
+  select(-excluded_grade_level)
+
+message("Elementary/middle charter contacts excluded: ", nrow(excluded_contacts))
+
 # anti_join() returns roster schools WITHOUT a match in the current data.
 # A mismatch stops the workflow rather than silently losing a recipient.
 unmatched_roster <- roster %>%
@@ -334,11 +376,128 @@ message("Preview: ", file.path(OUTPUT_DIR, "preview_email.html"))
 
 # ==== 6. SEND ONLY WHEN REQUESTED ============================================
 # Everything above runs in ALL modes; only this branch contacts Outlook.
-# preview: return after writing local outputs (safe default).
+# preview: write files, send nothing (safe default).
 # test: send one sample to TEST_EMAIL, never the school mailing list.
+# batch_test: one randomly assigned school for EACH address in a private CSV.
 # send: require approval + a typed SEND confirmation before bulk delivery.
 if (MODE == "preview") {
   message("PREVIEW ONLY. No emails were sent.")
+
+} else if (MODE == "batch_test") {
+  # ---- 6a. REVIEW A RANDOMIZED BATCH OF TEST EMAILS --------------------------
+  # Unlike live sending, test recipients come ONLY from the private test file.
+  # This mode does not read any WorkEmail value as a TO address.
+  if (!file.exists(BATCH_TEST_CSV)) {
+    stop("Missing test-address CSV: ", BATCH_TEST_CSV,
+         ". Create it with one column named Email.")
+  }
+  if (!requireNamespace("Microsoft365R", quietly = TRUE)) {
+    stop("Install Microsoft365R before using batch_test mode.")
+  }
+
+  testers <- readr::read_csv(
+    BATCH_TEST_CSV,
+    col_types = readr::cols(.default = readr::col_character()),
+    show_col_types = FALSE
+  )
+  if (!"Email" %in% names(testers)) {
+    stop("The private batch test CSV must have a column named Email.")
+  }
+  test_emails <- stringr::str_to_lower(stringr::str_trim(testers$Email))
+  if (length(test_emails) == 0 || anyNA(test_emails) ||
+      any(!stringr::str_detect(test_emails, "^[^[:space:]@]+@[^[:space:]@]+\\.[^[:space:]@]+$")) ||
+      anyDuplicated(test_emails)) {
+    stop("Test addresses must be nonblank, valid-looking, and unique.")
+  }
+  if (length(test_emails) > BATCH_TEST_MAX || length(test_emails) > nrow(mailing)) {
+    stop("Too many test addresses. Maximum: ",
+         min(BATCH_TEST_MAX, nrow(mailing)), ".")
+  }
+  if (any(test_emails %in% stringr::str_to_lower(roster$WorkEmail))) {
+    stop("A test address matches the real mailing roster. Use test-only addresses.")
+  }
+  if (!interactive()) {
+    stop("Batch testing requires an interactive RStudio session.")
+  }
+
+  # sample() selects different schools without replacement. set.seed() keeps
+  # those assignments consistent if the script is rerun with the same list.
+  set.seed(BATCH_TEST_SEED)
+  school_rows <- sample(seq_len(nrow(mailing)), length(test_emails), replace = FALSE)
+  batch <- dplyr::bind_cols(
+    tibble(TestEmail = test_emails),
+    mailing[school_rows, ]
+  )
+  batch_id <- paste0(as_of, "_seed", BATCH_TEST_SEED)
+  assignment_path <- file.path(OUTPUT_DIR, paste0("batch_test_assignments_", batch_id, ".csv"))
+  readr::write_csv(
+    batch %>% select(TestEmail, SchoolCode, SchoolName, DistrictName,
+                     DataAsOf, completion_pct),
+    assignment_path
+  )
+  message("Random assignments (PRIVATE): ", assignment_path)
+  print(batch %>% select(TestEmail, SchoolName))
+
+  # A separate test log prevents test activity from being mistaken for
+  # real school deliveries. Restarting a batch skips successful pairs.
+  log_path <- file.path(OUTPUT_DIR, paste0("batch_test_log_", batch_id, ".csv"))
+  if (file.exists(log_path)) {
+    batch_log <- readr::read_csv(
+      log_path,
+      col_types = readr::cols(.default = readr::col_character()),
+      show_col_types = FALSE
+    )
+  } else {
+    batch_log <- tibble(TestEmail = character(), SchoolCode = character(),
+                        SchoolName = character(), sent_at = character(),
+                        status = character())
+  }
+  already_sent <- vapply(seq_len(nrow(batch)), function(i) {
+    any(batch_log$TestEmail == batch$TestEmail[i] &
+        batch_log$SchoolCode == batch$SchoolCode[i] &
+        batch_log$status == "test_sent", na.rm = TRUE)
+  }, logical(1))
+  to_send <- batch[!already_sent, ]
+  if (nrow(to_send) == 0) {
+    message("All assigned test emails are already logged as sent. Nothing to send.")
+  } else {
+    # Explicit confirmation prevents a preview rerun from sending email.
+    answer <- readline(paste0(
+      "Send ", nrow(to_send), " TEST emails (not the school roster)? Type SEND TESTS: "
+    ))
+    if (answer != "SEND TESTS") {
+      message("Batch test cancelled. No emails sent in this run.")
+    } else {
+      outlook <- Microsoft365R::get_business_outlook()
+      for (i in seq_len(nrow(to_send))) {
+        school <- to_send[i, ]
+        status <- tryCatch({
+          outlook$create_email(
+            to = school$TestEmail,  # NEVER use the real school recipients
+            cc = NULL,
+            subject = paste0("[TEST] ", EMAIL_SUBJECT, " — ", school$SchoolName),
+            body = make_email_html(school),
+            content_type = "html"
+          )$send()
+          "test_sent"
+        }, error = function(e) {
+          warning("Batch test failed for ", school$TestEmail, ": ",
+                  conditionMessage(e))
+          "failed"
+        })
+        batch_log <- bind_rows(batch_log, tibble(
+          TestEmail = school$TestEmail,
+          SchoolCode = as.character(school$SchoolCode),
+          SchoolName = school$SchoolName,
+          sent_at = as.character(Sys.time()),
+          status = status
+        ))
+        readr::write_csv(batch_log, log_path)
+      }
+      message("Batch test log (PRIVATE): ", log_path)
+    }
+  }
+
 } else {
   if (!requireNamespace("Microsoft365R", quietly = TRUE)) {
     stop("Install Microsoft365R before using test/send mode.")
@@ -360,8 +519,19 @@ if (MODE == "preview") {
 
   outlook <- Microsoft365R::get_business_outlook()
   send_log_path <- file.path(OUTPUT_DIR, paste0("send_log_", as_of, ".csv"))
+  # Read existing logs with stable types. Numeric-looking school codes are IDs,
+  # not numbers; otherwise bind_rows() may fail after a successful email send.
   if (file.exists(send_log_path)) {
-    send_log <- readr::read_csv(send_log_path, show_col_types = FALSE)
+    send_log <- readr::read_csv(
+      send_log_path,
+      col_types = readr::cols(
+        SchoolCode = readr::col_character(),
+        SchoolName = readr::col_character(),
+        sent_at = readr::col_character(),
+        status = readr::col_character()
+      ),
+      show_col_types = FALSE
+    )
   } else {
     send_log <- tibble(SchoolCode = character(), SchoolName = character(),
                        sent_at = character(), status = character())
