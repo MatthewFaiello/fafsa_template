@@ -72,7 +72,12 @@ ui <-
         selectizeInput(
           inputId = "year",
           label = LABELS$year,
-          choices = YEAR_CHOICES,
+          # Display 2026–2027 while retaining the SchoolYear code 2027.
+          # The selected value used by server.R is unchanged.
+          choices = setNames(
+            YEAR_CHOICES,
+            paste0(YEAR_CHOICES - 1, "–", YEAR_CHOICES)
+          ),
           selected = DEFAULTS$year,
           multiple = FALSE
         ),

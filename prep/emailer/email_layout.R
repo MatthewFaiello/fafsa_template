@@ -194,7 +194,9 @@ build_email_body <- function(lea_name,
     # Dashboard
     "<p style='margin:16px 0 10px;font-size:14px;line-height:20px;",
     "font-family:Arial,sans-serif;color:#333333;'>",
-    "For a broader view of monthly school, LEA, and statewide FAFSA completion trends:",
+    "For a broader view of monthly FAFSA completion trends, use the dashboard’s ",
+    "<strong>drop-down selections to filter by school year, LEA, and school</strong> ",
+    "and view the data most relevant to your needs.",
     "</p>",
     
     build_button(

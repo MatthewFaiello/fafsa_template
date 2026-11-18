@@ -16,9 +16,10 @@
 # Read next:  email_layout.R        (functions that format the HTML)
 #
 # MODE = "preview": write files, send nothing (default).
-# MODE = "test":    send ONE example to TEST_EMAIL only.
-# MODE = "batch_test": send one randomly assigned school to each test address.
-# MODE = "send":    send the reviewed roster after explicit approval.
+# MODE = "test":    send ONE example to TEST_EMAIL; include optional ALWAYS_CC.
+# MODE = "batch_test": send one randomly assigned school to each test address;
+#                       never include ALWAYS_CC in this separate tester workflow.
+# MODE = "send":    send the reviewed roster with optional ALWAYS_CC after approval.
 # Run from the directory containing fafsa_template.Rproj.
 # =============================================================================
 
@@ -47,9 +48,9 @@ CONTACT_EMAIL <- "dheo@doe.k12.de.us"
 EMAIL_SUBJECT <- "Biweekly FAFSA Completion Updates"
 
 # Mode is a simple control variable used by the if/else block at the end.
-# Keep this as "preview" while developing, refreshing, or checking recipients.
-MODE <- "batch_test"              # "preview", "test", "batch_test", or "send"
-TEST_EMAIL <- "aQuena.Williams@doe.k12.de.us"  # Your own email address in test mode
+# Live run is ARMED: sends only after interactive review and typing SEND.
+MODE <- "preview"                    # "preview", "test", "batch_test", or "send"
+TEST_EMAIL <- "mattfaie@udel.edu"  # Only TO address for the single test
 
 # Batch testers live in a PRIVATE CSV with one column named Email.
 # Do not put real recipient addresses in this script or commit the private CSV.
@@ -57,8 +58,15 @@ BATCH_TEST_CSV <- "prep/emailer/private/batch_test_emails.csv"
 BATCH_TEST_SEED <- 20261113   # Reproducible random school assignments
 BATCH_TEST_MAX <- 20L        # Safety limit for the number of test emails
 PREVIEW_SCHOOL <- "Appoquinimink High School"
-ALWAYS_CC <- "aQuena.Williams@doe.k12.de.us" # Optional; leave empty unless approved
-SEND_APPROVED <- FALSE          # Must explicitly change to TRUE for live sending
+# Optional CC recipients for ONE-email "test" and live "send" modes.
+# Use ALWAYS_CC <- character(0) to send either type WITHOUT CC recipients.
+# The separate "batch_test" mode does not use this CC list.
+# In "send" mode, EACH listed address receives one copy per school.
+ALWAYS_CC <- c(
+  "aQuena.Williams@doe.k12.de.us",
+  "Shana.DeVlieger@doe.k12.de.us"
+)
+SEND_APPROVED <- FALSE           # Still requires typing SEND in the RStudio Console
 
 # ==== 2. READ AND VALIDATE THE SHARED APP DATA ================================
 # stop()/stopifnot() halt execution if required inputs are missing or invalid.
@@ -66,6 +74,15 @@ SEND_APPROVED <- FALSE          # Must explicitly change to TRUE for live sendin
 stopifnot(MODE %in% c("preview", "test", "batch_test", "send"))
 if (!startsWith(DASHBOARD_URL, "https://")) {
   stop("DASHBOARD_URL must be the live HTTPS dashboard link.")
+}
+# Validate the optional CC list before contacting Outlook.
+# It applies to single-email test and live send, but not batch_test.
+if (length(ALWAYS_CC) > 0) {
+  if (anyNA(ALWAYS_CC) ||
+      any(!str_detect(ALWAYS_CC, "^[^[:space:]@]+@[^[:space:]@]+\\.[^[:space:]@]+$")) ||
+      anyDuplicated(str_to_lower(ALWAYS_CC))) {
+    stop("ALWAYS_CC contains a missing, invalid-looking, or duplicate address.")
+  }
 }
 if (!file.exists(APP_CSV)) stop("App CSV not found: ", APP_CSV)
 if (!file.exists(ROSTER_XLSX)) stop("Roster not found: ", ROSTER_XLSX)
@@ -499,28 +516,22 @@ if (MODE == "preview") {
   }
 
 } else {
+  # ---- 6b. SINGLE TEST OR LIVE SCHOOL MAILING -------------------------------
+  # Both modes use ALWAYS_CC (if populated). The separate batch_test mode above
+  # always uses cc = NULL, protecting the controlled tester workflow.
   if (!requireNamespace("Microsoft365R", quietly = TRUE)) {
     stop("Install Microsoft365R before using test/send mode.")
   }
-  if (MODE == "test" && !nzchar(TEST_EMAIL)) {
-    stop("Set TEST_EMAIL to your own address before test mode.")
-  }
-  if (MODE == "send") {
-    if (!SEND_APPROVED) {
-      stop("Live sending is disabled. Review all recipients and set SEND_APPROVED <- TRUE.")
-    }
-    if (!interactive()) {
-      stop("Bulk sending requires an interactive RStudio session.")
-    }
-    answer <- readline(paste0("Send ", nrow(mailing),
-                             " school emails for SY", school_year, "? Type SEND: "))
-    if (answer != "SEND") stop("Sending cancelled.")
+  if (MODE == "test" &&
+      (length(TEST_EMAIL) != 1L || is.na(TEST_EMAIL) ||
+       !str_detect(TEST_EMAIL, "^[^[:space:]@]+@[^[:space:]@]+\\.[^[:space:]@]+$"))) {
+    stop("TEST_EMAIL must be one valid-looking email address.")
   }
 
-  outlook <- Microsoft365R::get_business_outlook()
+  # Keep tests and live deliveries in the same local, dated log, but identify
+  # them with DIFFERENT statuses: test_sent versus sent. Only live 'sent' rows
+  # count when resuming a partially completed live mailing.
   send_log_path <- file.path(OUTPUT_DIR, paste0("send_log_", as_of, ".csv"))
-  # Read existing logs with stable types. Numeric-looking school codes are IDs,
-  # not numbers; otherwise bind_rows() may fail after a successful email send.
   if (file.exists(send_log_path)) {
     send_log <- readr::read_csv(
       send_log_path,
@@ -537,47 +548,120 @@ if (MODE == "preview") {
                        sent_at = character(), status = character())
   }
 
-  # for() processes one school at a time; the school-specific addresses are
-  # looked up from the reviewed roster immediately before each send.
-  to_send <- if (MODE == "test") preview_row else mailing
-  for (i in seq_len(nrow(to_send))) {
-    school <- to_send[i, ]
-    if (MODE == "send" && any(send_log$SchoolCode == school$SchoolCode &
-                                send_log$status == "sent", na.rm = TRUE)) next
-
-    addresses <- if (MODE == "test") {
-      TEST_EMAIL
-    } else {
-      roster %>% filter(SchoolName == school$SchoolName) %>%
-        pull(WorkEmail) %>% unique()
+  if (MODE == "test") {
+    # Test TO never comes from the school roster. If CC is populated, ask for
+    # explicit confirmation before emailing colleagues a sample school report.
+    if (length(ALWAYS_CC) > 0L) {
+      if (str_to_lower(TEST_EMAIL) %in% str_to_lower(ALWAYS_CC)) {
+        stop("TEST_EMAIL also appears in ALWAYS_CC. Remove the duplicate.")
+      }
+      if (!interactive()) {
+        stop("A test with CC requires an interactive RStudio Console.")
+      }
+      message("ONE TEST EMAIL | TO: ", TEST_EMAIL)
+      message("CC: ", paste(ALWAYS_CC, collapse = ", "))
+      message("School example: ", preview_row$SchoolName[[1]])
+      answer <- readline("Send this test email with CCs? Type SEND TEST: ")
+      if (answer != "SEND TEST") stop("Test cancelled. No emails sent.")
     }
-    if (length(addresses) == 0) stop("No TO recipients for ", school$SchoolName)
-    cc <- if (MODE == "test" || !nzchar(ALWAYS_CC)) NULL else ALWAYS_CC
+    to_send <- preview_row
 
-    # tryCatch() records an Outlook error without ending the whole mailing.
-    # The send log is written after EACH school, so a rerun can skip schools
-    # already marked "sent" for this refresh. Review failures before retrying.
-    status <- tryCatch({
-      outlook$create_email(
-        to = addresses,
-        cc = cc,
-        subject = EMAIL_SUBJECT,
-        body = make_email_html(school),
-        content_type = "html"
-      )$send()
-      if (MODE == "test") "test_sent" else "sent"
-    }, error = function(e) {
-      warning("Email failed for ", school$SchoolName, ": ", conditionMessage(e))
-      "failed"
-    })
+  } else {
+    # Live sending requires two deliberate approvals, even if this script is
+    # accidentally sourced again with MODE='send' left in the settings.
+    if (!SEND_APPROVED) {
+      stop("Live sending is disabled. Review recipients and set SEND_APPROVED <- TRUE.")
+    }
+    if (!interactive()) {
+      stop("Bulk sending requires an interactive RStudio Console.")
+    }
+    if (any(str_to_lower(ALWAYS_CC) %in% str_to_lower(roster$WorkEmail))) {
+      stop("A live CC address also appears in the school TO roster. Review before sending.")
+    }
 
-    send_log <- bind_rows(send_log, tibble(
-      SchoolCode = school$SchoolCode,
-      SchoolName = school$SchoolName,
-      sent_at = as.character(Sys.time()),
-      status = status
-    ))
-    readr::write_csv(send_log, send_log_path)
+    # Resume only schools that are NOT logged as successfully sent for this
+    # DataAsOf date. Tests and failed attempts never count as live delivery.
+    already_sent_codes <- send_log %>%
+      filter(status == "sent") %>%
+      pull(SchoolCode) %>% unique()
+    to_send <- mailing %>% filter(!(SchoolCode %in% already_sent_codes))
+
+    message("LIVE SEND REVIEW | data as of ", as_of, " | school year ", school_year)
+    message("Approved schools: ", nrow(mailing),
+            " | already logged sent: ", nrow(mailing) - nrow(to_send),
+            " | emails remaining: ", nrow(to_send))
+    message("School-recipient rows: ", nrow(roster),
+            " | unique TO addresses: ", n_distinct(str_to_lower(roster$WorkEmail)))
+    message("Grade-level contacts excluded: ", nrow(excluded_contacts),
+            " | schools without a roster: ", nrow(unlisted_schools))
+    message("CC on EVERY remaining school email: ",
+            if (length(ALWAYS_CC)) paste(ALWAYS_CC, collapse = ", ") else "(none)")
+
+    if (nrow(to_send) > 0L) {
+      answer <- readline(paste0("Send ", nrow(to_send),
+                               " remaining school emails for SY", school_year,
+                               "? Type SEND: "))
+      if (answer != "SEND") stop("Sending cancelled. No emails sent in this run.")
+    } else {
+      message("All approved school emails are already logged as sent. Nothing to send.")
+    }
+  }
+
+  # The Outlook connection is created ONLY after all checks and confirmations.
+  # One Outlook message per school; each school's TO recipients share that
+  # school's message, and the optional CC list is added to that one message.
+  if (nrow(to_send) > 0L) {
+    outlook <- Microsoft365R::get_business_outlook()
+    for (i in seq_len(nrow(to_send))) {
+      school <- to_send[i, ]
+      addresses <- if (MODE == "test") {
+        TEST_EMAIL
+      } else {
+        roster %>% filter(SchoolName == school$SchoolName) %>%
+          pull(WorkEmail) %>% unique()
+      }
+      if (length(addresses) == 0) stop("No TO recipients for ", school$SchoolName)
+      cc <- if (length(ALWAYS_CC) == 0L) NULL else ALWAYS_CC
+
+      # An Outlook API success is recorded as 'sent' or 'test_sent'. A service
+      # error is logged as 'failed'. The log is saved after EACH attempt so
+      # an interrupted run can be reviewed before it is resumed.
+      status <- tryCatch({
+        outlook$create_email(
+          to = addresses,
+          cc = cc,
+          subject = if (MODE == "test") paste0("[TEST] ", EMAIL_SUBJECT) else EMAIL_SUBJECT,
+          body = make_email_html(school),
+          content_type = "html"
+        )$send()
+        if (MODE == "test") "test_sent" else "sent"
+      }, error = function(e) {
+        warning("Email failed for ", school$SchoolName, ": ", conditionMessage(e))
+        "failed"
+      })
+      send_log <- bind_rows(send_log, tibble(
+        SchoolCode = as.character(school$SchoolCode),
+        SchoolName = school$SchoolName,
+        sent_at = as.character(Sys.time()),
+        status = status
+      ))
+      readr::write_csv(send_log, send_log_path)
+    }
   }
   message("Send log: ", send_log_path)
+  if (MODE == "send") {
+    # Report unique successfully sent schools, not raw log rows (which can
+    # include tests, failures, and earlier attempts for the same school).
+    logged_sent_codes <- send_log %>%
+      filter(status == "sent") %>% pull(SchoolCode) %>% unique()
+    completed <- sum(mailing$SchoolCode %in% logged_sent_codes)
+    message("LIVE SEND RESULT | schools logged sent: ", completed,
+            " / ", nrow(mailing))
+    if (completed < nrow(mailing)) {
+      warning("Some school emails are not logged as sent. Review the private ",
+              "send log and Outlook Sent Items before any retry.")
+    }
+  } else {
+    message("TEST RESULT | check the new test_sent entry and Outlook Sent Items.")
+  }
 }
